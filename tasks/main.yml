@@ -12,8 +12,8 @@
   always_run: true
   become: true
 
-- name: change shell from bash to zsh
-  user:
+# Change this user's shell to zsh.
+- user:
     name: "{{ user.name }}"
     shell: "{{ zsh_path }}"
   when: "{{ make_zsh_default_shell|bool }}"
