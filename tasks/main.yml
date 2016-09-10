@@ -1,6 +1,6 @@
 ---
 - name: Check for existence of zsh
-  command: "which zsh"
+  command: "which xsh"
   register: zsh_exists
   failed_when: false
 
