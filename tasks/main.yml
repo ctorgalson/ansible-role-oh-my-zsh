@@ -1,16 +1,16 @@
 ---
 # Does zsh even exist?
 - name: Check for existence of zsh.
-  command: which xsh
+  command: "which xsh"
   register: zsh_exists
-  fail:
-    msg: "The zsh binary cannot be found!"
-  when: "'{{ fish_path }}' not in fish_exists.stdout"
   always_run: true
+
+- fail: msg="The zsh binary cannot be found!"
+  when: "'{{ fish_path }}' not in fish_exists.stdout"
 
 # Make sure /bin/zsh is contained in /etc/shells
 - name: Check if /etc/shells already contians zsh.
-  command: grep -x {{ zsh_path }} /etc/shells
+  command: "grep -x {{ zsh_path }} /etc/shells"
   register: zsh_in_shells
   always_run: true
 
