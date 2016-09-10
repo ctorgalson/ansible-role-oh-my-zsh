@@ -1,0 +1,8 @@
+---
+- name: Check for existence of zsh
+  command: "which zsh"
+  register: which_zsh
+
+- name: Debug `which_zsh` variable
+  debug:
+    var: which_zsh
