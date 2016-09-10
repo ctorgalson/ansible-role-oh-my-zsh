@@ -8,9 +8,11 @@
 
 # Make sure /bin/zsh is contained in /etc/shells
 - name: Check if /etc/shells already contians zsh.
-  command: "grep -x {{ zsh_path }} /etc/shells"
-  register: zsh_in_shells
+  lineinfile:
+    dest: "/etc/shells"
+    line: "{{ zsh_path }}"
   always_run: true
+  become: true
 
 # Set zsh to default shell if appropriate
 
