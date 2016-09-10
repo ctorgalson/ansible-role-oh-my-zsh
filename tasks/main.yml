@@ -1,12 +1,10 @@
 ---
-# Does zsh even exist?
 - name: Check for existence of zsh.
   command: "which zsh"
   register: zsh_exists
   failed_when: "'{{ zsh_path }}' not in zsh_exists.stdout"
   always_run: true
 
-# Make sure /bin/zsh is contained in /etc/shells
 - name: Check if /etc/shells already contians zsh.
   lineinfile:
     dest: "/etc/shells"
@@ -14,7 +12,11 @@
   always_run: true
   become: true
 
-# Set zsh to default shell if appropriate
+- name: Set zsh shell as default if specified.
+  command: "chsh -s {{ zsh_path }}"
+  when: "{{ make_zsh_default_shell|bool }}"
+  always_run: true
+  become: true
 
 # Install oh-my-zsh
 
