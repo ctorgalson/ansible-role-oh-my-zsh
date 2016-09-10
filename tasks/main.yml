@@ -7,7 +7,7 @@
   always_run: true
 
 # Make sure /bin/zsh is contained in /etc/shells
-- hame: Check if /etc/shells already contians zsh.
+- name: Check if /etc/shells already contians zsh.
   command: grep -x {{ zsh_path }} /etc/shells
   register: zsh_in_shells
   always_run: true
