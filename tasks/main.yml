@@ -3,7 +3,9 @@
 - name: Check for existence of zsh.
   command: which xsh
   register: zsh_exists
-  failed_when: "'{{ fish_path }}' not in fish_exists.stdout"
+  fail:
+    msg: "The zsh binary cannot be found!"
+  when: "'{{ fish_path }}' not in fish_exists.stdout"
   always_run: true
 
 # Make sure /bin/zsh is contained in /etc/shells
