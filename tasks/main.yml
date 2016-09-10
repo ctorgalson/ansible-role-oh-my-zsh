@@ -1,8 +1,16 @@
 ---
 - name: Check for existence of zsh
   command: "which zsh"
-  register: which_zsh
+  register: zsh_exists
+  failed_when: false
 
-- name: Debug `which_zsh` variable
+# Make sure /bin/zsh is contained in /etc/shells
+
+# Set zsh to default shell if appropriate
+
+# Install oh-my-zsh
+
+
+- name: Debug `zsh_exists` variable
   debug:
-    var: which_zsh
+    var: zsh_exists
