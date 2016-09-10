@@ -19,11 +19,3 @@
   become: true
 
 # Install oh-my-zsh
-
-- name: Debug `zsh_exists` variable
-  debug:
-    var: zsh_exists
-
-- name: Debug `zsh_in_shells` variable
-  debug:
-    var: zsh_in_shells
