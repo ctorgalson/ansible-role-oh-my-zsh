@@ -12,8 +12,10 @@
   always_run: true
   become: true
 
-- name: Set zsh shell as default if specified.
-  command: "chsh -s {{ zsh_path }}"
+- name: change shell from bash to zsh
+  user:
+    name: "{{ user.name }}"
+    shell: "{{ zsh_shell }}"
   when: "{{ make_zsh_default_shell|bool }}"
   always_run: true
 
