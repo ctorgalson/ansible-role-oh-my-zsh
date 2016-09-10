@@ -1,7 +1,7 @@
 ---
 # Does zsh even exist?
 - name: Check for existence of zsh.
-  command: "which xsh"
+  command: "which zsh"
   register: zsh_exists
   failed_when: "'{{ fish_path }}' not in fish_exists.stdout"
   always_run: true
