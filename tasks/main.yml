@@ -12,17 +12,9 @@
   always_run: true
   become: true
 
-- name: Get current username.
-  command: "whoami"
-  register: current_user
-  always_run: true
-
 - name: Set zsh shell as default if specified.
   command: "chsh -s {{ zsh_path }}"
   when: "{{ make_zsh_default_shell|bool }}"
   always_run: true
-  become: true
 
 # Install oh-my-zsh
-
-- debug: var=current_user
