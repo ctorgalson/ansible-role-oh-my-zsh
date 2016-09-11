@@ -30,6 +30,8 @@
   register: oh_my_zsh_installed
   always_run: true
 
+- debug: var=oh_my_zsh_installed
+
 - name: Create temp directory for Oh My ZSH installer.
   command: "mktemp -d"
   register: oh_my_zsh_temp_dir
