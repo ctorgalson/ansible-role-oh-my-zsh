@@ -26,6 +26,7 @@
     repo: "{{ oh_my_zsh_git_repository }}"
     dest: "/{{ zsh_users_path_prefix }}/{{ item }}/{{ zsh_users_oh_my_zsh_directory }}"
     update: "yes"
+    accept_hostkey: "yes"
   with_items: "{{ zsh_users }}"
   become: true
 
