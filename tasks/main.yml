@@ -37,6 +37,8 @@
   register: oh_my_zsh_temp_dir
   when: "not {{ oh_my_zsh_installed.stat.exists|bool }}"
 
+- debug: var=oh_my_zsh_temp_dir
+
 - name: Download Oh My ZSH installer.
   get_url:
     url: "{{ oh_my_zsh_installer_url }}"
