@@ -30,19 +30,17 @@
   register: oh_my_zsh_installed
   always_run: true
 
-- debug: var=oh_my_zsh_installed
+- name: Create temp directory for Oh My ZSH installer.
+  command: "mktemp -d"
+  register: oh_my_zsh_temp_dir
+  when: "not {{ oh_my_zsh_installed.stat.exists|bool }}"
 
-  # - name: Create temp directory for Oh My ZSH installer.
-  #   command: "mktemp -d"
-  #   register: oh_my_zsh_temp_dir
-  #   when: "not {{ oh_my_zsh_installed }}"
-  # 
-  # - name: Download Oh My ZSH installer.
-  #   get_url:
-  #     url: "{{ oh_my_zsh_installer_url }}"
-  #     dest: "{{ oh_my_zsh_temp_dir.stdout }}/install.sh"
-  #   when: "not {{ oh_my_zsh_installed }}"
-  # 
-  # - name: Run Oh My ZSH installer.
-  #   command: "sh {{ oh_my_zsh_temp_dir.stdout }}/install.sh"
-  #   # failed_when:
+- name: Download Oh My ZSH installer.
+  get_url:
+    url: "{{ oh_my_zsh_installer_url }}"
+    dest: "{{ oh_my_zsh_temp_dir.stdout }}/install.sh"
+  when: "not {{ oh_my_zsh_installed.stat.exists|bool }}"
+
+- name: Run Oh My ZSH installer.
+  command: "sh {{ oh_my_zsh_temp_dir.stdout }}/install.sh"
+  # failed_when:
