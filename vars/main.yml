@@ -1,6 +1,7 @@
 ---
 zsh_path: "/bin/zsh"
 zsh_default_shell_users:
+  - "ctorgalson"
   - "mars"
 
 oh_my_zsh_installer_url: "https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh"
