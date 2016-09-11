@@ -42,9 +42,11 @@
   when: "not {{ oh_my_zsh_installed.stat.exists|bool }}"
 
 - name: Run Oh My ZSH installer.
-  command: "sh {{ oh_my_zsh_temp_dir.stdout }}/install.sh"
+  command: "sudo -u {{ item }} sh {{ oh_my_zsh_temp_dir.stdout }}/install.sh"
+  with_items: "{{ zsh_default_shell_users }}"
+  when: "not {{ oh_my_zsh_installed.stat.exists|bool }} and '{{ item }}' in '{{ users }}'"
+  become: true
   register: oh_my_zsh_installer_output
-  when: "not {{ oh_my_zsh_installed.stat.exists|bool }}"
   # failed_when:
 
-- debug: var=oh_my_zsh_installer
+- debug: var=oh_my_zsh_installer_output
