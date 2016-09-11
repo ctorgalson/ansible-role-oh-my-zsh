@@ -17,36 +17,34 @@
   register: users
   always_run: true
 
-- name: Set ZSH shell as default if specified.
+- name: Set ZSH shell as default for specified users.
   command: "sudo chsh -s {{ zsh_path }} {{ item }}"
   with_items: "{{ zsh_default_shell_users }}"
   when: "'{{ item }}' in '{{ users.stdout }}'"
   become: true
   always_run: true
 
-- name: Check if Oh My ZSH is installed.
-  stat:
-    path: "{{ oh_my_zsh_install_directory }}"
-  register: oh_my_zsh_installed
-  always_run: true
+- name: Clone Oh My ZSH repo for each user.
+  git:
+    repo: "{{ oh_my_zsh_git_repository }}"
+    dest: "/{{ zsh_users_path_prefix }}/{{ item }}/{{ zsh_users_oh_my_zsh_directory }}"
+    update: yes
+  with_items: "{{ zsh_users }}"
 
-- name: Create temp directory for Oh My ZSH installer.
-  command: "mktemp -d"
-  register: oh_my_zsh_temp_dir
-  when: "not {{ oh_my_zsh_installed.stat.exists|bool }}"
+- debug: var=users
 
-- name: Download Oh My ZSH installer.
-  get_url:
-    url: "{{ oh_my_zsh_installer_url }}"
-    dest: "{{ oh_my_zsh_temp_dir.stdout }}/install.sh"
-  when: "not {{ oh_my_zsh_installed.stat.exists|bool }}"
-
-- name: Run Oh My ZSH installer.
-  command: "sudo -u {{ item }} sh {{ oh_my_zsh_temp_dir.stdout }}/install.sh"
-  with_items: "{{ zsh_default_shell_users }}"
-  when: "not {{ oh_my_zsh_installed.stat.exists|bool }} and '{{ item }}' in '{{ users.stdout }}'"
-  become: true
-  register: oh_my_zsh_installer_output
-  # failed_when:
-
-- debug: var=oh_my_zsh_installer_output
+  # - name: Download Oh My ZSH installer.
+  #   get_url:
+  #     url: "{{ oh_my_zsh_installer_url }}"
+  #     dest: "{{ oh_my_zsh_temp_dir.stdout }}/install.sh"
+  #   when: "not {{ oh_my_zsh_installed.stat.exists|bool }}"
+  # 
+  # - name: Run Oh My ZSH installer.
+  #   command: "sudo -u {{ item }} sh {{ oh_my_zsh_temp_dir.stdout }}/install.sh"
+  #   with_items: "{{ zsh_default_shell_users }}"
+  #   when: "not {{ oh_my_zsh_installed.stat.exists|bool }} and '{{ item }}' in '{{ users.stdout }}'"
+  #   become: true
+  #   register: oh_my_zsh_installer_output
+  #   # failed_when:
+  # 
+  # - debug: var=oh_my_zsh_installer_output

@@ -4,5 +4,7 @@ zsh_default_shell_users:
   - "ctorgalson"
   - "mars"
 
-oh_my_zsh_installer_url: "https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh"
-oh_my_zsh_install_directory: "~/.oh-my-zsh"
+zsh_users_path_prefix: "/Users"
+
+oh_my_zsh_git_repository: "git@github.com:robbyrussell/oh-my-zsh.git"
+oh_my_zsh_install_directory: ".oh-my-zsh"
