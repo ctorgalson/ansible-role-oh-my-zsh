@@ -19,7 +19,7 @@
 
 - name: Set ZSH shell as default for specified users.
   command: "sudo chsh -s {{ zsh_path }} {{ item }}"
-  with_items: "{{ zsh_default_shell_users }}"
+  with_items: "{{ zsh_users }}"
   when: "'{{ item }}' in '{{ users.stdout }}'"
   become: true
   always_run: true
