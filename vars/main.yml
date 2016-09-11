@@ -1,10 +1,11 @@
 ---
 zsh_path: "/bin/zsh"
-zsh_default_shell_users:
+
+zsh_users:
   - "ctorgalson"
   - "mars"
-
-zsh_users_path_prefix: "/Users"
+zsh_users_path_prefix: "Users"
+zsh_users_oh_my_zsh_directory: ".oh-my-zsh"
 
 oh_my_zsh_git_repository: "git@github.com:robbyrussell/oh-my-zsh.git"
 oh_my_zsh_install_directory: ".oh-my-zsh"
