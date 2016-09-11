@@ -2,8 +2,14 @@
 zsh_path: "/bin/zsh"
 
 zsh_users:
-  - "ctorgalson"
-  - "mars"
+  - {
+    user: "ctorgalson",
+    group: "staff"
+  }
+  - {
+    user: "mars",
+    group: "staff"
+  }
 zsh_users_path_prefix: "Users"
 zsh_users_oh_my_zsh_directory: ".oh-my-zsh"
 

@@ -16,28 +16,29 @@
   register: users
 
 - name: Set ZSH shell as default for specified users.
-  command: "sudo chsh -s {{ zsh_path }} {{ item }}"
+  command: "sudo chsh -s {{ zsh_path }} {{ item.user }}"
   with_items: "{{ zsh_users }}"
-  when: "'{{ item }}' in '{{ users.stdout }}'"
+  when: "'{{ item.user }}' in '{{ users.stdout }}'"
   become: true
 
 - name: Clone Oh My ZSH repo for each user.
   git:
     repo: "{{ oh_my_zsh_git_repository }}"
-    dest: "/{{ zsh_users_path_prefix }}/{{ item }}/{{ zsh_users_oh_my_zsh_directory }}"
+    dest: "/{{ zsh_users_path_prefix }}/{{ item.user }}/{{ zsh_users_oh_my_zsh_directory }}"
     update: "yes"
     accept_hostkey: "yes"
   with_items: "{{ zsh_users }}"
-  when: "'{{ item }}' in '{{ users.stdout }}'"
+  when: "'{{ item.user }}' in '{{ users.stdout }}'"
   become: true
 
 - name: Set permissions on newly cloned repositories.
   file:
-    path: "/{{ zsh_users_path_prefix }}/{{ item }}/{{ zsh_users_oh_my_zsh_directory }}"
-    owner: "{{ item }}"
+    path: "/{{ zsh_users_path_prefix }}/{{ item.user }}/{{ zsh_users_oh_my_zsh_directory }}"
+    owner: "{{ item.user }}"
+    group: "{{ item.group }}"
     recurse: "yes"
   with_items: "{{ zsh_users }}"
-  when: "'{{ item }}' in '{{ users.stdout }}'"
+  when: "'{{ item.user }}' in '{{ users.stdout }}'"
   become: true
 
 - debug: var=users
