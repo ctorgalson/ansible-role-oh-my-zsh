@@ -1,11 +1,11 @@
 ---
-- name: Check for existence of zsh.
+- name: Check for existence of ZSH.
   command: "which zsh"
   register: zsh_exists
   failed_when: "'{{ zsh_path }}' not in zsh_exists.stdout"
   always_run: true
 
-- name: Ensure /etc/shells contians zsh.
+- name: Ensure /etc/shells contians ZSH.
   lineinfile:
     dest: "/etc/shells"
     line: "{{ zsh_path }}"
@@ -17,14 +17,14 @@
   register: users
   always_run: true
 
-- name: Set zsh shell as default if specified.
+- name: Set ZSH shell as default if specified.
   command: "sudo -u {{ item }} chsh -s {{ zsh_path }}"
   with_items: "{{ zsh_default_shell_users }}"
   when: "{{ item }} in {{ users.stdout }}"
   become: true
   always_run: true
 
-- name: Create temp directory for OMZ install.
+- name: Create temp directory for Oh My ZSH installer.
   command: "mktemp -d"
   register: oh_my_zsh_temp_dir
   # when:
