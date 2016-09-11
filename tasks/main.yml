@@ -13,10 +13,9 @@
   become: true
 
 - name: Set zsh shell as default if specified.
-  command: "chsh -s {{ zsh_path }}"
-  when: "{{ make_zsh_default_shell|bool }}"
+  command: "sudo -u {{ item }} chsh -s {{ zsh_path }}"
+  with_items: "{{ zsh_default_shell_users }}"
+  become: true
   always_run: true
 
 # Install oh-my-zsh
-
-- debug: var=current_user
