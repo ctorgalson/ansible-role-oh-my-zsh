@@ -20,7 +20,7 @@
 - name: Set ZSH shell as default if specified.
   command: "sudo -u {{ item }} chsh -s {{ zsh_path }}"
   with_items: "{{ zsh_default_shell_users }}"
-  when: "'{{ item }}' in {{ users.stdout }}"
+  when: "'{{ item }}' in '{{ users.stdout }}'"
   become: true
   always_run: true
 
