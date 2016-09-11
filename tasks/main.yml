@@ -5,7 +5,7 @@
   failed_when: "'{{ zsh_path }}' not in zsh_exists.stdout"
   always_run: true
 
-- name: Check if /etc/shells already contians zsh.
+- name: Ensure /etc/shells contians zsh.
   lineinfile:
     dest: "/etc/shells"
     line: "{{ zsh_path }}"
@@ -24,4 +24,19 @@
   become: true
   always_run: true
 
-# Install oh-my-zsh
+- name: Create temp directory for OMZ install.
+  command: "mktemp -d"
+  register: oh_my_zsh_temp_dir
+  # when:
+
+- name: Download Oh My ZSH installer.
+  get_url:
+    url: "{{ zsh_installer_url }}"
+    dest: "{{ oh_my_zsh_temp_dir.stdout }}/install.sh"
+  # when:
+
+- name: Run Oh My ZSH installer.
+  command: "sh {{ oh_my_zsh_temp_dir.stdout }}/install.sh"
+  # failed_when:
+
+
