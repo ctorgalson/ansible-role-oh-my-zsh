@@ -18,7 +18,7 @@
   always_run: true
 
 - name: Set ZSH shell as default if specified.
-  command: "chsh -s {{ zsh_path }} {{ item }}"
+  command: "sudo chsh -s {{ zsh_path }} {{ item }}"
   with_items: "{{ zsh_default_shell_users }}"
   when: "'{{ item }}' in '{{ users.stdout }}'"
   become: true
