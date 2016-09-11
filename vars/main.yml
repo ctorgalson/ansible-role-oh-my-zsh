@@ -2,5 +2,5 @@
 make_zsh_default_shell: true
 zsh_path: "/bin/zsh"
 zsh_default_shell_users:
-  - "ctorgalson",
+  - "ctorgalson"
   - "mars"
