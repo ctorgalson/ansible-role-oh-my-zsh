@@ -9,20 +9,17 @@
   lineinfile:
     dest: "/etc/shells"
     line: "{{ zsh_path }}"
-  always_run: true
   become: true
 
 - name: Find all current users.
   command: "users"
   register: users
-  always_run: true
 
 - name: Set ZSH shell as default for specified users.
   command: "sudo chsh -s {{ zsh_path }} {{ item }}"
   with_items: "{{ zsh_users }}"
   when: "'{{ item }}' in '{{ users.stdout }}'"
   become: true
-  always_run: true
 
 - name: Clone Oh My ZSH repo for each user.
   git:
@@ -30,6 +27,15 @@
     dest: "/{{ zsh_users_path_prefix }}/{{ item }}/{{ zsh_users_oh_my_zsh_directory }}"
     update: "yes"
   with_items: "{{ zsh_users }}"
+  become: true
+
+- name: Set permissions on newly cloned repositories.
+  file:
+    path: "/{{ zsh_users_path_prefix }}/{{ item }}/{{ zsh_users_oh_my_zsh_directory }}"
+    owner: "{{ item }}"
+    recurse: "yes"
+  with_items: "{{ zsh_users }}"
+  become: true
 
 - debug: var=users
 
