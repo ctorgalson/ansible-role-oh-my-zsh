@@ -1,0 +1,20 @@
+---
+- name: Clone Oh My ZSH repo for each user.
+  git:
+    repo: "{{ oh_my_zsh_git_repository }}"
+    dest: "/{{ zsh_users_path_prefix }}/{{ item.user }}/{{ zsh_users_oh_my_zsh_directory }}"
+    update: "yes"
+    accept_hostkey: "yes"
+  with_items: "{{ zsh_users }}"
+  when: "'{{ item.user }}' in '{{ users.stdout }}'"
+  become: true
+
+- name: Set permissions on newly cloned repositories.
+  file:
+    path: "/{{ zsh_users_path_prefix }}/{{ item.user }}/{{ zsh_users_oh_my_zsh_directory }}"
+    owner: "{{ item.user }}"
+    group: "{{ item.group }}"
+    recurse: "yes"
+  with_items: "{{ zsh_users }}"
+  when: "'{{ item.user }}' in '{{ users.stdout }}'"
+  become: true

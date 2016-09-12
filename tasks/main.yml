@@ -1,71 +1,21 @@
 ---
-- name: Check for existence of ZSH.
-  command: "which zsh"
-  register: zsh_exists
-  failed_when: "'{{ zsh_path }}' not in zsh_exists.stdout"
-  always_run: true
-
-- name: Ensure /etc/shells contians ZSH.
-  lineinfile:
-    dest: "/etc/shells"
-    line: "{{ zsh_path }}"
-  become: true
-
 - name: Find all current users.
   command: "users"
   register: users
 
-- name: Set ZSH shell as default for specified users.
-  command: "sudo chsh -s {{ zsh_path }} {{ item.user }}"
-  with_items: "{{ zsh_users }}"
-  when: "'{{ item.user }}' in '{{ users.stdout }}'"
-  become: true
+- include: zsh.yml
+  tags:
+    - zsh
+    - configure
 
-- name: Clone Oh My ZSH repo for each user.
-  git:
-    repo: "{{ oh_my_zsh_git_repository }}"
-    dest: "/{{ zsh_users_path_prefix }}/{{ item.user }}/{{ zsh_users_oh_my_zsh_directory }}"
-    update: "yes"
-    accept_hostkey: "yes"
-  with_items: "{{ zsh_users }}"
-  when: "'{{ item.user }}' in '{{ users.stdout }}'"
-  become: true
+- include: oh-my-zsh-install.yml
+  tags:
+    - oh-my-zsh
+    - install
+    - install-oh-my-zsh
 
-- name: Set permissions on newly cloned repositories.
-  file:
-    path: "/{{ zsh_users_path_prefix }}/{{ item.user }}/{{ zsh_users_oh_my_zsh_directory }}"
-    owner: "{{ item.user }}"
-    group: "{{ item.group }}"
-    recurse: "yes"
-  with_items: "{{ zsh_users }}"
-  when: "'{{ item.user }}' in '{{ users.stdout }}'"
-  become: true
-
-- name: Copy .zshrc into place if required.
-  template:
-    src: "{{ oh_my_zsh_zshrc_template }}"
-    dest: "/{{ zsh_users_path_prefix }}/{{ item.user }}/.zshrc"
-    owner: "{{ item.user }}"
-    group: "{{ item.group }}"
-    backup: "yes"
-  with_items: "{{ zsh_users }}"
-  when: "'{{ item.user }}' in '{{ users.stdout }}' and {{ oh_my_zsh_zshrc_create }}"
-  become: true
-
-- debug: var=users
-
-  # - name: Download Oh My ZSH installer.
-  #   get_url:
-  #     url: "{{ oh_my_zsh_installer_url }}"
-  #     dest: "{{ oh_my_zsh_temp_dir.stdout }}/install.sh"
-  #   when: "not {{ oh_my_zsh_installed.stat.exists|bool }}"
-  # 
-  # - name: Run Oh My ZSH installer.
-  #   command: "sudo -u {{ item }} sh {{ oh_my_zsh_temp_dir.stdout }}/install.sh"
-  #   with_items: "{{ zsh_default_shell_users }}"
-  #   when: "not {{ oh_my_zsh_installed.stat.exists|bool }} and '{{ item }}' in '{{ users.stdout }}'"
-  #   become: true
-  #   register: oh_my_zsh_installer_output
-  #   # failed_when:
-  # 
-  # - debug: var=oh_my_zsh_installer_output
+- include: oh-my-zsh-zshrc.yml
+  tags:
+    - oh-my-zsh
+    - configure
+    - configure-oh-my-zsh
