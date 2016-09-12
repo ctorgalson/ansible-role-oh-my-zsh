@@ -1,57 +1,59 @@
+# Managed by Ansible. This file may be overwritten when playbooks are run!
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/{{ zsh_users_path_prefix }}/{{ item }}/{{ zsh_users_oh_my_zsh_directory }}
+export ZSH=/{{ zsh_users_path_prefix }}/{{ item.user }}/{{ zsh_users_oh_my_zsh_directory }}
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="{{ oh_my_zsh_zshrc.zsh_theme }}"
 
 # Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+CASE_SENSITIVE="{{ oh_my_zsh_zshrc.case_sensitive }}"
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+HYPHEN_INSENSITIVE="{{ oh_my_zsh_zshrc.hyphen_insensitive }}"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="{{ oh_my_zsh_zshrc.disable_auto_update }}"
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+export UPDATE_ZSH_DAYS={{ oh_my_zsh_zshrc.update_zsh_days }}
 
 # Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
+DISABLE_LS_COLORS="{{ oh_my_zsh_zshrc.disable_ls_colors }}"
 
 # Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="{{ oh_my_zsh_zshrc.disable_auto_title }}"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="{{ oh_my_zsh_zshrc.enable_correction }}"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="{{ oh_my_zsh_zshrc.completion_waiting_dots }}"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+DISABLE_UNTRACKED_FILES_DIRTY="{{ oh_my_zsh_zshrc.disable_untracked_files_dirty }}"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="{{ oh_my_zsh_zshrc.hist_stamps }}"
 
 # Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+ZSH_CUSTOM={{ oh_my_zsh_zshrc.zsh_custom }}
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=({{ oh_my_zsh_zshrc.plugins | join(" ") }})
 
 source $ZSH/oh-my-zsh.sh
 

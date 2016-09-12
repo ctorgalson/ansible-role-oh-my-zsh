@@ -20,4 +20,19 @@ oh_my_zsh_git_repository: "git@github.com:robbyrussell/oh-my-zsh.git"
 oh_my_zsh_install_directory: ".oh-my-zsh"
 
 # Oh My ZSH template vars.
-
+oh_my_zsh_zshrc:
+  zsh_theme: "robbyrussel"
+  case_sensitive: false
+  hyphen_insensitive: false
+  disable_auto_update: false
+  update_zsh_days: 13
+  disable_ls_colors: false
+  disable_auto_title: false
+  enable_correction: false
+  completion_waiting_dots: false
+  disable_untracked_files_dirty: false
+  hist_stamps: "mm/dd/yyy"
+  zsh_custom: "$ZSH/custom"
+  plugins:
+    - git
+    - catflap
