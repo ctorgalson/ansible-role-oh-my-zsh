@@ -47,6 +47,9 @@
 		owner: "{{ item.user }}"
 		group: "{{ item.group }}"
 		backup: "yes"
+  with_items: "{{ zsh_users }}"
+  when: "'{{ item.user }}' in '{{ users.stdout }}'"
+  become: true
 
 - debug: var=users
 
