@@ -12,6 +12,7 @@ zsh_users:
     user: "mars",
     group: "staff"
   }
+zsh_users_home_path_prefix: "/Users"
 zsh_users_oh_my_zsh_directory: ".oh-my-zsh"
 
 # Oh My ZSH vars.

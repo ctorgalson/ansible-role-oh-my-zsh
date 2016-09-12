@@ -2,7 +2,7 @@
 - name: Copy .zshrc into place if required.
   template:
     src: "{{ oh_my_zsh_zshrc_template }}"
-    dest: "{{ ansible_env.HOME }}/.zshrc"
+    dest: "{{ zsh_users_home_path_prefix }}/.zshrc"
     owner: "{{ item.user }}"
     group: "{{ item.group }}"
     backup: "yes"
