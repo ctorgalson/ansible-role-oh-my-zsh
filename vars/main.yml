@@ -21,7 +21,7 @@ oh_my_zsh_install_directory: ".oh-my-zsh"
 
 # Oh My ZSH template vars.
 oh_my_zsh_zshrc:
-  zsh_theme: "robbyrussel"
+  zsh_theme: "robbyrussell"
   case_sensitive: false
   hyphen_insensitive: false
   disable_auto_update: false
@@ -35,4 +35,3 @@ oh_my_zsh_zshrc:
   zsh_custom: "$ZSH/custom"
   plugins:
     - git
-    - catflap
