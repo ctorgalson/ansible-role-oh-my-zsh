@@ -1,12 +1,9 @@
 ---
-- name: Find all current users.
-  command: "users"
-  register: users
-
 - include: zsh.yml
   tags:
     - zsh
     - configure
+    - configure-zsh
 
 - include: oh-my-zsh-install.yml
   tags:

@@ -7,5 +7,5 @@
     group: "{{ item.group }}"
     backup: "yes"
   with_items: "{{ zsh_users }}"
-  when: "'{{ item.user }}' in '{{ users.stdout }}' and {{ oh_my_zsh_zshrc_create }}"
+  when: "{{ oh_my_zsh_zshrc_create }}"
   become: true

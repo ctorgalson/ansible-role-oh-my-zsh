@@ -6,7 +6,6 @@
     update: "yes"
     accept_hostkey: "yes"
   with_items: "{{ zsh_users }}"
-  when: "'{{ item.user }}' in '{{ users.stdout }}'"
   become: true
 
 - name: Set permissions on newly cloned repositories.
@@ -16,5 +15,4 @@
     group: "{{ item.group }}"
     recurse: "yes"
   with_items: "{{ zsh_users }}"
-  when: "'{{ item.user }}' in '{{ users.stdout }}'"
   become: true
