@@ -37,4 +37,3 @@ oh_my_zsh_zshrc:
   zsh_custom: "$ZSH/custom"
   plugins:
     - git
-    - elephant
