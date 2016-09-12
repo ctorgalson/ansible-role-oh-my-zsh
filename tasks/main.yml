@@ -41,15 +41,15 @@
   when: "'{{ item.user }}' in '{{ users.stdout }}'"
   become: true
 
-- name: Copy .zshrc into place
+- name: Copy .zshrc into place if required.
   template:
-    src: "templates/zshrc.zsh-template.j2"
+    src: "{{ oh_my_zsh_zshrc_template }}"
     dest: "/{{ zsh_users_path_prefix }}/{{ item.user }}/.zshrc"
     owner: "{{ item.user }}"
     group: "{{ item.group }}"
     backup: "yes"
   with_items: "{{ zsh_users }}"
-  when: "'{{ item.user }}' in '{{ users.stdout }}'"
+  when: "'{{ item.user }}' in '{{ users.stdout }}' and {{ oh_my_zsh_zshrc_create }}"
   become: true
 
 - debug: var=users
