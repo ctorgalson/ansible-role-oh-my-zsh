@@ -2,17 +2,19 @@
 - name: Clone Oh My ZSH repo for each user.
   git:
     repo: "{{ oh_my_zsh_git_repository }}"
-    dest: "{{ zsh_users_home_path_prefix }}/{{ oh_my_zsh_install_directory }}"
+    dest: "{{ zsh_users_home_path_prefix }}/{{ item.user }}/{{ oh_my_zsh_install_directory }}"
     update: "yes"
     accept_hostkey: "yes"
   with_items: "{{ zsh_users }}"
+  when: "{{ zsh_users | length > 0 }}"
   become: true
 
 - name: Set permissions on newly cloned repositories.
   file:
-    path: "{{ zsh_users_home_path_prefix }}/{{ oh_my_zsh_install_directory }}"
+    path: "{{ zsh_users_home_path_prefix }}/{{ item.user }}/{{ oh_my_zsh_install_directory }}"
     owner: "{{ item.user }}"
     group: "{{ item.group }}"
     recurse: "yes"
   with_items: "{{ zsh_users }}"
+  when: "{{ zsh_users | length > 0 }}"
   become: true

@@ -2,10 +2,10 @@
 - name: Copy .zshrc into place if required.
   template:
     src: "{{ oh_my_zsh_zshrc_template }}"
-    dest: "{{ zsh_users_home_path_prefix }}/.zshrc"
+    dest: "{{ zsh_users_home_path_prefix }}/{{ item.user }}/.zshrc"
     owner: "{{ item.user }}"
     group: "{{ item.group }}"
     backup: "yes"
   with_items: "{{ zsh_users }}"
-  when: "{{ oh_my_zsh_zshrc_create }}"
+  when: "{{ oh_my_zsh_zshrc_create }} and {{ zsh_users | length > 0 }}"
   become: true

@@ -3,15 +3,11 @@
 zsh_path: "/bin/zsh"
 
 # User vars.
-zsh_users:
-  - {
-    user: "ctorgalson",
-    group: "staff"
-  }
-  - {
-    user: "mars",
-    group: "staff"
-  }
+zsh_users: []
+  # - {
+  #   user: "someuser",
+  #   group: "somegroup"
+  # }
 zsh_users_home_path_prefix: "/Users"
 
 # Oh My ZSH vars.
