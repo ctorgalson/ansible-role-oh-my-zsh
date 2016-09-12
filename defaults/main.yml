@@ -13,7 +13,6 @@ zsh_users:
     group: "staff"
   }
 zsh_users_home_path_prefix: "/Users"
-zsh_users_oh_my_zsh_directory: ".oh-my-zsh"
 
 # Oh My ZSH vars.
 oh_my_zsh_git_repository: "git@github.com:robbyrussell/oh-my-zsh.git"
