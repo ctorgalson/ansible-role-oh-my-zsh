@@ -17,6 +17,6 @@
   when: "'{{ item.user }}' in '{{ users.stdout }}'"
   become: true
 
-debug: var=zsh_users
+- debug: var=zsh_users
 
-debug: var=users
+- debug: var=users
