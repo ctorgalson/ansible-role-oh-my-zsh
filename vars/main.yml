@@ -1,6 +1,8 @@
 ---
+# ZSH vars.
 zsh_path: "/bin/zsh"
 
+# User vars.
 zsh_users:
   - {
     user: "ctorgalson",
@@ -13,5 +15,9 @@ zsh_users:
 zsh_users_path_prefix: "Users"
 zsh_users_oh_my_zsh_directory: ".oh-my-zsh"
 
+# Oh My ZSH vars.
 oh_my_zsh_git_repository: "git@github.com:robbyrussell/oh-my-zsh.git"
 oh_my_zsh_install_directory: ".oh-my-zsh"
+
+# Oh My ZSH template vars.
+
