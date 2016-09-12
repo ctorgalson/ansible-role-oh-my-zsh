@@ -20,7 +20,7 @@ oh_my_zsh_git_repository: "git@github.com:robbyrussell/oh-my-zsh.git"
 oh_my_zsh_install_directory: ".oh-my-zsh"
 
 # Oh My ZSH template vars.
-oh_my_zsh_zshrc_create: true
+oh_my_zsh_zshrc_create: false
 oh_my_zsh_zshrc_template: "templates/zshrc.zsh-template.j2"
 oh_my_zsh_zshrc:
   zsh_theme: "robbyrussell"
