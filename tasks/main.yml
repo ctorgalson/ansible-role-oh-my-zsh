@@ -41,6 +41,13 @@
   when: "'{{ item.user }}' in '{{ users.stdout }}'"
   become: true
 
+- template:
+    src: "templates/zshrc.zsh-template.j2"
+		dest: "/{{ zsh_users_path_prefix }}/{{ item.user }}/.zshrc"
+		owner: "{{ item.user }}"
+		group: "{{ item.group }}"
+		backup: "yes"
+
 - debug: var=users
 
   # - name: Download Oh My ZSH installer.
