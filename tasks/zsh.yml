@@ -16,9 +16,3 @@
   with_items: "{{ zsh_users }}"
   when: "'{{ item.user }}' in '{{ users.stdout }}'"
   become: true
-
-- debug: var=ansible_env
-
-- debug: var=zsh_users
-
-- debug: var=users
