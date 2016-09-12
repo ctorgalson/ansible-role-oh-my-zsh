@@ -41,7 +41,8 @@
   when: "'{{ item.user }}' in '{{ users.stdout }}'"
   become: true
 
-- template:
+- namee: Copy .zshrc into place
+	template:
     src: "templates/zshrc.zsh-template.j2"
 		dest: "/{{ zsh_users_path_prefix }}/{{ item.user }}/.zshrc"
 		owner: "{{ item.user }}"
