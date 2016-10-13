@@ -10,19 +10,11 @@
   when: "{{ oh_my_zsh_zshrc_create }} and {{ zsh_users | length > 0 }}"
   become: true
 
-- name: Debug loop.
-  debug:
-    msg: "User: {{ item[0].user }} | Line: \"{{ item[1] }}\""
+- name: Export vars to .zshrc.
+  lineinefile:
+    dest: "{{ zsh_users_home_path_prefix }}/{{ item.user }}/.zshrc"
+    line: "echo 'export {{ item[1] }}' >> {{ zsh_users_home_path_prefix }}/{{ item[0].user }}/.zshrc"
   with_nested:
     - "{{ zsh_users }}"
     - "{{ zsh_exports }}"
-
-
-  #- name: Export vars to .zshrc.
-  #  lineinefile:
-  #    dest: "{{ zsh_users_home_path_prefix }}/{{ item.user }}/.zshrc"
-  #    line: "echo 'export {{ item[1] }}' >> {{ zsh_users_home_path_prefix }}/{{ item[0].user }}/.zshrc"
-  #  with_nested:
-  #    - "{{ zsh_users }}"
-  #    - "{{ zsh_exports }}"
-  #  when: "{{ zsh_exports | length > 0 }}"
+  when: "{{ zsh_users | length > 0 }} and {{ zsh_exports | > 0 }}"
