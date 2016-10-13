@@ -11,7 +11,7 @@
   become: true
 
 - name: Export vars to .zshrc.
-  lineinefile:
+  lineinfile:
     dest: "{{ zsh_users_home_path_prefix }}/{{ item[0].user }}/.zshrc"
     line: "echo 'export {{ item[1] }}' >> {{ zsh_users_home_path_prefix }}/{{ item[0].user }}/.zshrc"
   with_nested:
