@@ -17,4 +17,4 @@
   with_nested:
     - "{{ zsh_users }}"
     - "{{ zsh_exports }}"
-  when: "{{ zsh_users | length > 0 }} and {{ zsh_exports | > 0 }}"
+  when: "{{ zsh_users | length > 0 }} and {{ zsh_exports | length > 0 }}"
