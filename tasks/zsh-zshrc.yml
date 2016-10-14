@@ -1,4 +1,6 @@
 ---
+# Note that we assume this file exists! lineinfile will fail if the file is
+# not present.
 - name: Export vars to .zshrc.
   lineinfile:
     dest: "{{ zsh_users_home_path_prefix }}/{{ item[0].user }}/.zshrc"

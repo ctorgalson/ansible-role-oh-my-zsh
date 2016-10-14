@@ -32,5 +32,6 @@ oh_my_zsh_zshrc:
   disable_untracked_files_dirty: false
   hist_stamps: "mm/dd/yyy"
   zsh_custom: "$ZSH/custom"
-  plugins:
-    - git
+  plugins: []
+    # - git
+    # - someotherplugin
