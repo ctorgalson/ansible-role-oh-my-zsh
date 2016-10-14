@@ -10,7 +10,7 @@ zsh_users: []
   # }
 zsh_users_home_path_prefix: "/Users"
 zsh_exports: []
-  # - PATH="/usr/local/sbin:$PATH"
+  # - export PATH="/usr/local/sbin:$PATH"
 
 # Oh My ZSH vars.
 oh_my_zsh_git_repository: "git@github.com:robbyrussell/oh-my-zsh.git"
