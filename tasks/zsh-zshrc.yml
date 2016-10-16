@@ -2,10 +2,10 @@
 # Note that we assume this file exists! lineinfile will fail if the file is
 # not present.
 - name: Export vars to .zshrc.
-  lineinfile:
-    dest: "{{ zsh_users_home_path_prefix }}/{{ item[0].user }}/.zshrc"
-    line: "{{ item[1] }}"
-  with_nested:
+  blockinfile:
+    dest: "{{ zsh_users_home_path_prefix }}/{{ item.user }}/.zshrc"
+    block: "{{ item.settings }}"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK ({{ item.user }} SETTINGS)"
+  with_items:
     - "{{ zsh_users }}"
-    - "{{ zsh_exports }}"
-  when: "{{ zsh_users | length > 0 }} and {{ zsh_exports | length > 0 }}"
+  when: "{{ zsh_users | length > 0 }} and {{ item.settings | length > 0 }}"
