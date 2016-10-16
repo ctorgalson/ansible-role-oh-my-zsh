@@ -4,7 +4,8 @@
 - name: Export vars to .zshrc.
   blockinfile:
     dest: "{{ zsh_users_home_path_prefix }}/{{ item.user }}/.zshrc"
-    block: "{{ item.settings }}"
+    block: |
+      "{{ item.settings }}"
     marker: "# {mark} ANSIBLE MANAGED BLOCK ({{ item.user }} SETTINGS)"
   with_items:
     - "{{ zsh_users }}"
