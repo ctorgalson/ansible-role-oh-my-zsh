@@ -54,4 +54,5 @@ are used in this task.
 ### `zsh-zshrc.yml`: Final Zsh configuration
 
 This task adds individual lines to the `.zshrc` file. This is useful for adding
-individual Zsh settings on a per-user basis.
+individual Zsh settings on a per-user basis. It uses no variables not defined
+elsewhere.
