@@ -8,4 +8,4 @@
   with_subelements:
     - "{{ zsh_users }}"
     - settings
-  when: "{{ zsh_users | length > 0 }} and {{ item.settings | length > 0 }}"
+  when: "{{ zsh_users | length > 0 }}"
