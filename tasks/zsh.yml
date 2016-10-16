@@ -5,7 +5,7 @@
   failed_when: "'{{ zsh_path }}' not in zsh_exists.stdout"
   always_run: true
 
-- name: Ensure /etc/shells contians ZSH.
+- name: Ensure /etc/shells contains ZSH.
   lineinfile:
     dest: "/etc/shells"
     line: "{{ zsh_path }}"
