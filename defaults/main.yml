@@ -6,7 +6,10 @@ zsh_path: "/bin/zsh"
 zsh_users: []
   # - {
   #   user: "someuser",
-  #   group: "somegroup"
+  #   group: "somegroup",
+  #   settings: |
+  #     export PATH="/usr/local/sbin:$path"
+  #     alias l="ls -AF"
   # }
 zsh_users_home_path_prefix: "/Users"
 zsh_exports: []

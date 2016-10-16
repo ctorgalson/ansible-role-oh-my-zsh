@@ -3,9 +3,9 @@
 # not present.
 - name: Export vars to .zshrc.
   lineinfile:
-    dest: "{{ zsh_users_home_path_prefix }}/{{ item[0].user }}/.zshrc"
-    line: "{{ item[1] }}"
-  with_nested:
+    dest: "{{ zsh_users_home_path_prefix }}/{{ item.0.user }}/.zshrc"
+    line: "{{ item.1 }}"
+  with_subelements:
     - "{{ zsh_users }}"
-    - "{{ zsh_exports }}"
-  when: "{{ zsh_users | length > 0 }} and {{ zsh_exports | length > 0 }}"
+    - settings
+  when: "{{ zsh_users | length > 0 }}"
