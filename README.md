@@ -10,40 +10,48 @@ should also work on many other \*nix variants. It performs the following tasks:
 - Install Oh My ZSH for each specified user (in `~/.oh-my-zsh` by default).
 - Configure (Oh My) ZSH by optionally creating a `.zshrc` file for each
   specified user.
+- Run final configuration of `.zsh` by adding individual lines to individual
+  users' `.zshrc` files.
 
-## Variables
+## Variables by task
 
-### ZSH configuration
+### `zsh.yml`: Zsh setup
 
-These variables help specify the minimal configuration the role performs for
-the ZSH shell.
+This task sets zsh as the default shell for a list of users. Note that it does
+*not* install zsh, and will fail if zsh does not exist on the system. It uses
+the (configurable) variables in the following table.
 
-- `zsh_path`: expected path for `zsh` to exist at.
-- `zsh_users`: an array of users to install Oh My ZSH for. Each item should
-  include `user` and `group`.
-- `zsh_users_home_path_prefix`: path (from `/`) to the parent directory
-  containing users on the system (should be identical to `$HOME`, and should
-  not include a trailing slash).
+| Variable name  | Default value | Description |
+|----------------|---------------|-------------|
+| `zsh_path`     | `/bin/zsh`    | The expected path for `zsh` |
+| `zsh_users`    | `[]`          | An array of users expected to use (oh my) zsh. Each item should include `user`, `group`, and `settings` (see `defaults/main.yml` for details). |
 
-## Oh My ZSH installation
+### `oh-my-zsh-install.yml`: Oh My Zsh installation
 
-These variables are used in the actual Oh My ZSH installation.
+This task clones the Oh My Zsh repository into the user directory of each
+specified user and sets the appropriate permissions on the directory. The
+(configurable) variables in the following table are used in the actual Oh My
+Zsh installation (see also the `zsh.yml` variables, above).
 
-- `oh_my_zsh_git_repository`: complete `git clone` url to Oh My ZSH repo.
-- `oh_my_zsh_install_directory`: directory name (relative to user home
-  directory) for Oh My ZSH installation (should include neither leading nor
-  trailing slashes).
+| Variable name | Default value | Description |
+|---------------|---------------|-------------|
+| `oh_my_zsh_git_repository`   | `git@github.com:robbyrussell/oh-my-zsh.git ` | Complete `git clone` url to Oh My Zsh repository. |
+| `oh_my_zsh_install_directory` | `.oh-my-zsh` | Name of the directory to clone Oh My Zsh repository to. Assumes it will be installed in individual users' home directories. |
+| `zsh_users_home_path_prefix` | `/Users`                                     | path (from `/`) to the parent directory containing users on the system (should be identical to `$HOME`, and should not include a trailing slash). Default value works for MacOS. |
 
-## Oh My ZSH configuration
+### `oh-my-zsh-zshrc.yml`: Oh My Zsh configuration
 
-These variables are used in the configuration of Oh My ZSH--chiefly in setting
-up a customized `.zshrc` file.
+This task creates a `.zshrc` file per-user containing global values for various
+Oh My Zsh options based on [the `.zshrc` template in the oh-my-zsh repository](https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/templates/zshrc.zsh-template). Note that it
+will back up any existing `.zshrc` file. The variables in the following table
+are used in this task.
 
-- `oh_my_zsh_zshrc_create`: Whether to create a `.zshrc` file at all.
-- `oh_my_zsh_zshrc_tempalte`: Path to template to use for creating `.zshrc`
-  file.
-- `oh_my_zsh_zshrc`: This variable contains variables for most of the options
-  that can be set in the `.zshrc` file. For more information, see:
-  - [The Oh My ZSH `.zshrc` template](https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/templates/zshrc.zsh-template)
-  - The role's own template: `templates/zshrc.zsh-template.js`
-  - The default values for the role's template: `defaults/main.yml`
+| Variable name | Default value | Description |
+|---------------|---------------|-------------|
+| `oh_my_zsh_zshrc_create` | `true` | Whether or not perform this task at all. |
+| `oh_my_zsh_zshrc_template` | `templates/zshrc.zsh-template.j2` | The location of the template to use. |
+
+### `zsh-zshrc.yml`: Final Zsh configuration
+
+This task adds individual lines to the `.zshrc` file. This is useful for adding
+individual Zsh settings on a per-user basis.
