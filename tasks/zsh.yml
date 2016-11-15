@@ -14,7 +14,7 @@
 # We use `sudo ...` here instead of `become_user` because this way we can be
 # assured of never being prompted for a user's password.
 - name: Set ZSH shell as default for specified users.
-  command: "sudo chsh -s {{ zsh_path }} {{ item.user }}"
+  command: "chsh -s {{ zsh_path }} {{ item.user }}"
   with_items: "{{ zsh_users }}"
   when: "{{ zsh_users | length > 0 }}"
   become: true
