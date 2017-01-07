@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: ctorgalson
-  description: Installs, enables, and configures oh-my-zsh on MacOS.
+  description: Installs and configures oh-my-zsh for one or more users on macOS or Ubuntu.
   # company: your company (optional)
 
   # If the issue tracker for your role is not on github, uncomment the
@@ -72,10 +72,10 @@ galaxy_info:
   #  - 13.2
   - name: MacOSX
     versions:
-    - all
+  #  - all
   #  - 10.10
-  #  - 10.11
-  #  - 10.12
+     - 10.11
+     - 10.12
   #  - 10.7
   #  - 10.8
   #  - 10.9
@@ -133,8 +133,8 @@ galaxy_info:
   #  - 9.1
   #  - 9.2
   #  - 9.3
-  #- name: Ubuntu
-  #  versions:
+  - name: Ubuntu
+    versions:
   #  - all
   #  - lucid
   #  - maverick
@@ -148,7 +148,8 @@ galaxy_info:
   #  - utopic
   #  - vivid
   #  - wily
-  #  - xenial
+     - xenial
+     - yakkety
   #- name: SLES
   #  versions:
   #  - all
