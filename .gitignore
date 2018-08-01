@@ -1,1 +1,3 @@
 .venv
+pytestdebug.log
+__pycache__
