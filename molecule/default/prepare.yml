@@ -1,0 +1,28 @@
+---
+- name: Prepare
+  hosts: all
+  gather_facts: false
+  become: true
+  tasks:
+    - name: Create users.
+      user:
+        name: "{{ item.name }}"
+      with_items:
+        - name: "lorem"
+          group: "lorem"
+        - name: "ipsum"
+          group: "ipsum"
+
+    - name: Pre-create .zshrc for user ipsum.
+      get_url:
+        url: "https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/templates/zshrc.zsh-template"
+        dest: "/home/ipsum/.zshrc"
+        owner: "ipsum"
+        group: "ipsum"
+
+    - name: Install packages.
+      package:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - "git"
