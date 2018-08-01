@@ -1,13 +1,16 @@
 ---
 dependency:
   name: galaxy
+  options:
+    role-file: requirements.yml
 driver:
   name: docker
 lint:
   name: yamllint
 platforms:
   - name: instance
-    image: centos:7
+    image: ubuntu
+    image_version: 16.04
 provisioner:
   name: ansible
   lint:
