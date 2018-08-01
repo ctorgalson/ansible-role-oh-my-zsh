@@ -1,5 +1,25 @@
 ---
 - name: Converge
   hosts: all
-  roles:
-    - role: ansible-role-oh-my-zsh
+  become: true
+  vars:
+    comment_string: "molecule-idempotence"
+    install_zsh: true
+    users:
+      - name: "lorem"
+        group: "lorem"
+        settings: ""
+      - name: "ipsum"
+        group: "ipsum"
+        settings: |
+          export PATH="/usr/local/sbin:$path"
+          alias l="ls -AF"
+  tasks:
+    - name: Run ansible-role-oh-my-zsh.
+      include_role:
+        name: "ansible-role-oh-my-zsh"
+      vars:
+        zsh_user: "{{ item }}"
+        # Only create .zshrc for user 'lorem'.
+        oh_my_zsh_zshrc_create: "{{ (item.name == 'lorem') | ternary(true, false) }}"
+      with_items: "{{ users }}"
