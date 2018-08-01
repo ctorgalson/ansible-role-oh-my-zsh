@@ -11,4 +11,4 @@ install:
   - pip install docker
 script:
   # Replace with `molecule --debug test` for debugging.
-- molecule test
+  - molecule test
