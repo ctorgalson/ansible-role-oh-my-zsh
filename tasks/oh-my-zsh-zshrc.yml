@@ -1,11 +1,13 @@
 ---
+- name: Derive user .zshrc path.
+  set_fact:
+    zsh_user_zshrc_path: "/{{ zsh_user_home_dir }}/{{ zsh_user.name }}/.zshrc"
+
 - name: Template .zshrc into place if required.
   template:
     src: "{{ oh_my_zsh_zshrc_template }}"
-    dest: "{{ zsh_users_home_path_prefix }}/{{ item.user }}/.zshrc"
-    owner: "{{ item.user }}"
-    group: "{{ item.group }}"
-    backup: "yes"
-  with_items: "{{ zsh_users }}"
-  when: "{{ oh_my_zsh_zshrc_create }} and {{ zsh_users | length > 0 }}"
-  become: true
+    dest: "{{ zsh_user_zshrc_path }}"
+    owner: "{{ zsh_user.name }}"
+    group: "{{ zsh_user.group }}"
+    backup: "{{ oh_my_zsh_zshrc_backup }}"
+  when: oh_my_zsh_zshrc_create
