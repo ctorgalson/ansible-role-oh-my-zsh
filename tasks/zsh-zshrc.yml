@@ -1,11 +1,12 @@
 ---
 # Note that we assume this file exists! lineinfile will fail if the file is
 # not present.
-- name: Export vars to .zshrc.
-  lineinfile:
-    dest: "{{ zsh_users_home_path_prefix }}/{{ item.0.user }}/.zshrc"
-    line: "{{ item.1 }}"
-  with_subelements:
-    - "{{ zsh_users }}"
-    - settings
-  when: "{{ zsh_users | length > 0 }}"
+- name: Export vars to .zshrc if required.
+  blockinfile:
+    dest: "{{ zsh_user_zshrc_path }}"
+    block: "{{ zsh_user.settings }}"
+    backup: "{{ oh_my_zsh_zshrc_backup }}"
+  when:
+    - zsh_user.settings is defined
+    - zsh_user.settings != ''
+    - not oh_my_zsh_zshrc_create
