@@ -1,20 +1,28 @@
 ---
-- name: Check for existence of ZSH.
+- name: Establish home directory.
+  set_fact:
+    zsh_user_home_dir: "{{ (ansible_system == 'Darwin') | ternary('Users', 'home') }}"
+
+- name: Ensure zsh is installed.
+  block:
+    - name: Install zsh for Linux.
+      package:
+        name: "zsh"
+        state: present
+      when: ansible_system == "Linux" and install_zsh
+
+    - name: Install zsh for macOS.
+      homebrew:
+        name: "zsh"
+        state: present
+      when: ansible_system == "Darwin" and install_zsh
+
+- name: Get zsh installed path.
   command: "which zsh"
-  register: zsh_exists
-  failed_when: "'{{ zsh_path }}' not in zsh_exists.stdout"
-  always_run: true
+  register: zsh_installed_path
+  changed_when: false
 
-- name: Ensure /etc/shells contains ZSH.
-  lineinfile:
-    dest: "/etc/shells"
-    line: "{{ zsh_path }}"
-  become: true
-
-- name: Set ZSH shell as default for specified users.
+- name: Set user shell to zsh.
   user:
-    name: "{{ item.user }}"
-    shell: "{{ zsh_path }}"
-  with_items: "{{ zsh_users }}"
-  when: "{{ zsh_users | length > 0 }}"
-  become: true
+    name: "{{ zsh_user.name }}"
+    shell: "{{ zsh_installed_path.stdout }}"

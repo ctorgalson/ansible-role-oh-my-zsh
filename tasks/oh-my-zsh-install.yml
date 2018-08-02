@@ -1,20 +1,21 @@
 ---
-- name: Clone Oh My ZSH repo for each user.
+- name: Establish install location.
+  set_fact:
+    oh_my_zsh_install_path: "/{{ zsh_user_home_dir }}/{{ zsh_user.name }}/{{ oh_my_zsh_install_directory }}"
+
+- name: Clone Oh My ZSH repo for user.
   git:
     repo: "{{ oh_my_zsh_git_repository }}"
-    dest: "{{ zsh_users_home_path_prefix }}/{{ item.user }}/{{ oh_my_zsh_install_directory }}"
-    update: "yes"
-    accept_hostkey: "yes"
-  with_items: "{{ zsh_users }}"
-  when: "{{ zsh_users | length > 0 }}"
-  become: true
+    dest: "{{ oh_my_zsh_install_path }}"
+    update: true
+    accept_hostkey: true
+    version: "master"
+  register: oh_my_zsh_clone
 
-- name: Set permissions on newly cloned repositories.
+- name: Set ownership on newly cloned repository.
   file:
-    path: "{{ zsh_users_home_path_prefix }}/{{ item.user }}/{{ oh_my_zsh_install_directory }}"
-    owner: "{{ item.user }}"
-    group: "{{ item.group }}"
-    recurse: "yes"
-  with_items: "{{ zsh_users }}"
-  when: "{{ zsh_users | length > 0 }}"
-  become: true
+    path: "{{ oh_my_zsh_install_path }}"
+    owner: "{{ zsh_user.name }}"
+    group: "{{ zsh_user.group }}"
+    recurse: true
+  when: oh_my_zsh_clone is changed

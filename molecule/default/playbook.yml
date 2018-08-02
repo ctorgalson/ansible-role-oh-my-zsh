@@ -1,0 +1,24 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+  vars:
+    install_zsh: true
+    users:
+      - name: "lorem"
+        group: "lorem"
+      - name: "ipsum"
+        group: "ipsum"
+        settings: |
+          export PATH="/usr/local/sbin:$path"
+          alias l="ls -AF"
+  tasks:
+    - name: Run ansible-role-oh-my-zsh.
+      include_role:
+        name: "ansible-role-oh-my-zsh"
+      vars:
+        zsh_user: "{{ item }}"
+        # Only create `.zshrc` for user 'lorem'; item.settings will be
+        # appended to `.zshrc` for the user 'ipsum'.
+        oh_my_zsh_zshrc_create: "{{ (item.name == 'lorem') | ternary(true, false) }}"
+      with_items: "{{ users }}"

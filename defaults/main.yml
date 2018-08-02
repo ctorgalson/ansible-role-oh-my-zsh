@@ -1,27 +1,23 @@
 ---
-# ZSH vars.
-zsh_path: "/bin/zsh"
+# Role vars.
+install_zsh: false
 
 # User vars.
-zsh_users: []
-  # - {
-  #   user: "someuser",
-  #   group: "somegroup",
-  #   settings: |
-  #     export PATH="/usr/local/sbin:$path"
-  #     alias l="ls -AF"
-  # }
-zsh_users_home_path_prefix: "/Users"
-zsh_exports: []
-  # - export PATH="/usr/local/sbin:$PATH"
+zsh_user: []
+#  - name: "someuser"
+#    group: "somegroup"
+#    settings: |
+#     export PATH="/usr/local/sbin:$path"
+#     alias l="ls -AF"
 
 # Oh My ZSH vars.
-oh_my_zsh_git_repository: "git@github.com:robbyrussell/oh-my-zsh.git"
+oh_my_zsh_git_repository: "https://github.com/robbyrussell/oh-my-zsh.git"
 oh_my_zsh_install_directory: ".oh-my-zsh"
 
 # Oh My ZSH template vars.
 oh_my_zsh_zshrc_create: true
 oh_my_zsh_zshrc_template: "templates/zshrc.zsh-template.j2"
+oh_my_zsh_zshrc_backup: true
 oh_my_zsh_zshrc:
   zsh_theme: "robbyrussell"
   case_sensitive: false
@@ -33,8 +29,6 @@ oh_my_zsh_zshrc:
   enable_correction: false
   completion_waiting_dots: false
   disable_untracked_files_dirty: false
-  hist_stamps: "mm/dd/yyy"
+  hist_stamps: "mm/dd/yyyy"
   zsh_custom: "$ZSH/custom"
   plugins: []
-    # - git
-    # - someotherplugin

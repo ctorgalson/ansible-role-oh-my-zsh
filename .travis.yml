@@ -1,0 +1,14 @@
+---
+sudo: required
+language: python
+services:
+  - docker
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install -o Dpkg::Options::="--force-confold" --force-yes -y docker-ce
+install:
+  - pip install molecule
+  - pip install docker
+script:
+  # Replace with `molecule --debug test` for debugging.
+  - molecule test

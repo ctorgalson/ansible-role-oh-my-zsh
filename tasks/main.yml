@@ -1,13 +1,13 @@
 ---
-# Make sure zsh is installed and minimally configured.
-- include: zsh.yml
+# Make sure zsh is installed and set to the user's default shell.
+- include_tasks: zsh.yml
   tags:
     - zsh
     - configure
     - configure-zsh
 
 # Install oh-my-zsh.
-- include: oh-my-zsh-install.yml
+- include_tasks: oh-my-zsh-install.yml
   tags:
     - oh-my-zsh
     - install
@@ -15,15 +15,15 @@
 
 # Configure oh-my-zsh with a custom .zshrc template if oh_my_zsh_zshrc_create
 # is set to 'true'.
-- include: oh-my-zsh-zshrc.yml
+- include_tasks: oh-my-zsh-zshrc.yml
   tags:
     - oh-my-zsh
     - configure
     - configure-oh-my-zsh
 
-# Finally, add exports etc to .zshrc /last/ (i.e. so they get added to whaterver
-# .zshrc exists.
-- include: zsh-zshrc.yml
+# # Finally, add exports etc to .zshrc /last/ (i.e. so they get added to whaterver
+# # .zshrc exists.
+- include_tasks: zsh-zshrc.yml
   tags:
     - zsh
     - configure
