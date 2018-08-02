@@ -1,5 +1,7 @@
 # Ansible Role Oh My ZSH
 
+![Build status](https://travis-ci.com/ctorgalson/ansible-role-oh-my-zsh.svg?branch=master)
+
 This is a basic Ansible role to enable and configure Oh My Zsh on Ubuntu or
 MacOS. It should also work on many other \*nix variants. It performs the
 following tasks:
