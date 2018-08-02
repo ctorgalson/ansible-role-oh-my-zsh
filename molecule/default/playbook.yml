@@ -3,12 +3,10 @@
   hosts: all
   become: true
   vars:
-    comment_string: "molecule-idempotence"
     install_zsh: true
     users:
       - name: "lorem"
         group: "lorem"
-        settings: ""
       - name: "ipsum"
         group: "ipsum"
         settings: |
@@ -20,6 +18,7 @@
         name: "ansible-role-oh-my-zsh"
       vars:
         zsh_user: "{{ item }}"
-        # Only create .zshrc for user 'lorem'.
+        # Only create `.zshrc` for user 'lorem'; item.settings will be
+        # appended to `.zshrc` for the user 'ipsum'.
         oh_my_zsh_zshrc_create: "{{ (item.name == 'lorem') | ternary(true, false) }}"
       with_items: "{{ users }}"
