@@ -3,7 +3,7 @@
 install_zsh: false
 
 # User vars.
-zsh_user: ""
+zsh_user: []
 #  - name: "someuser"
 #    group: "somegroup"
 #    settings: |
@@ -29,9 +29,6 @@ oh_my_zsh_zshrc:
   enable_correction: false
   completion_waiting_dots: false
   disable_untracked_files_dirty: false
-  hist_stamps: "mm/dd/yyy"
+  hist_stamps: "mm/dd/yyyy"
   zsh_custom: "$ZSH/custom"
   plugins: []
-# plugins:
-#   - git
-#   - someotherplugin
