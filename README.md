@@ -30,19 +30,19 @@ following tasks:
 | `oh_my_zsh_zshrc_template` | `templates/zshrc.zsh-template.j2` | The template used to create the user's `.zshrc` file when `oh_my_zsh_zshrc_create` is `true`. |
 | `oh_my_zsh_zshrc_backup` | `true` | Whether or not to create backup the existing `.zshrc` files when the role changes it. |
 | `oh_my_zsh_zshrc` | (see below) | List of variables used in `templates/zshrc.zsh-template.j2` or your custom template. |
-| `oh_my_zsh_zshrc.zsh_theme` | `robbyrussell` | See `templates/zshrc.zsh-template`. |
-| `oh_my_zsh_zshrc.case_sensitive` | `false` | See `templates/zshrc.zsh-template`. |
-| `oh_my_zsh_zshrc.hyphen_insensitive` | `false` | See `templates/zshrc.zsh-template`. |
-| `oh_my_zsh_zshrc.disable_auto_update` | `false` | See `templates/zshrc.zsh-template`. |
-| `oh_my_zsh_zshrc.update_zsh_days` | `13` | See `templates/zshrc.zsh-template`. |
-| `oh_my_zsh_zshrc.disable_ls_colors` | `false` | See `templates/zshrc.zsh-template`. |
-| `oh_my_zsh_zshrc.disable_auto_title` | `false` | See `templates/zshrc.zsh-template`. |
-| `oh_my_zsh_zshrc.enable_correction` | `false` | See `templates/zshrc.zsh-template`. |
-| `oh_my_zsh_zshrc.completion_waiting_dots` | `false` | See `templates/zshrc.zsh-template`. |
-| `oh_my_zsh_zshrc.disable_untracked_files_dirty` | `false` | See `templates/zshrc.zsh-template`. |
-| `oh_my_zsh_zshrc.hist_stamps` | `mm/dd/yyyy` | See `templates/zshrc.zsh-template`. |
-| `oh_my_zsh_zshrc.zsh_custom` | `$ZSH/custom` | See `templates/zshrc.zsh-template`. |
-| `oh_my_zsh_zshrc.plugins` | `[]` | A list of Oh My Zsh plugins to enable. |
+| `oh_my_zsh_zsh_theme` | `robbyrussell` | See `templates/zshrc.zsh-template`. |
+| `oh_my_zsh_case_sensitive` | `false` | See `templates/zshrc.zsh-template`. |
+| `oh_my_zsh_hyphen_insensitive` | `false` | See `templates/zshrc.zsh-template`. |
+| `oh_my_zsh_disable_auto_update` | `false` | See `templates/zshrc.zsh-template`. |
+| `oh_my_zsh_update_zsh_days` | `13` | See `templates/zshrc.zsh-template`. |
+| `oh_my_zsh_disable_ls_colors` | `false` | See `templates/zshrc.zsh-template`. |
+| `oh_my_zsh_disable_auto_title` | `false` | See `templates/zshrc.zsh-template`. |
+| `oh_my_zsh_enable_correction` | `false` | See `templates/zshrc.zsh-template`. |
+| `oh_my_zsh_completion_waiting_dots` | `false` | See `templates/zshrc.zsh-template`. |
+| `oh_my_zsh_disable_untracked_files_dirty` | `false` | See `templates/zshrc.zsh-template`. |
+| `oh_my_zsh_hist_stamps` | `mm/dd/yyyy` | See `templates/zshrc.zsh-template`. |
+| `oh_my_zsh_zsh_custom` | `$ZSH/custom` | See `templates/zshrc.zsh-template`. |
+| `oh_my_zsh_plugins` | `[]` | A list of Oh My Zsh plugins to enable. |
 
 ## Role task files
 
@@ -124,4 +124,7 @@ This task only runs when `oh_my_zsh_zshrc_create` is set to `false`.
             # Only create `.zshrc` for user 'lorem'; item.settings will be
             # appended to `.zshrc` for the user 'ipsum'.
             oh_my_zsh_zshrc_create: "{{ (item.name == 'lorem') | ternary(true, false) }}"
+            oh_my_zsh_plugins:
+              - "autojump"
+              - "git"
           with_items: "{{ users }}"

@@ -45,6 +45,7 @@ def test_zshrc_create(host, name):
 
     assert f.exists and f.is_file
     assert "export ZSH=/home/{0}/.oh-my-zsh".format(name) in f.content_string
+    assert "plugins=(autojump git)" in f.content_string
 
 
 @pytest.mark.parametrize("name", [

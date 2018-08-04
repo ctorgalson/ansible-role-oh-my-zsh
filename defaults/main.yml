@@ -18,17 +18,16 @@ oh_my_zsh_install_directory: ".oh-my-zsh"
 oh_my_zsh_zshrc_create: true
 oh_my_zsh_zshrc_template: "templates/zshrc.zsh-template.j2"
 oh_my_zsh_zshrc_backup: true
-oh_my_zsh_zshrc:
-  zsh_theme: "robbyrussell"
-  case_sensitive: false
-  hyphen_insensitive: false
-  disable_auto_update: false
-  update_zsh_days: 13
-  disable_ls_colors: false
-  disable_auto_title: false
-  enable_correction: false
-  completion_waiting_dots: false
-  disable_untracked_files_dirty: false
-  hist_stamps: "mm/dd/yyyy"
-  zsh_custom: "$ZSH/custom"
-  plugins: []
+oh_my_zsh_zsh_theme: "robbyrussell"
+oh_my_zsh_case_sensitive: false
+oh_my_zsh_hyphen_insensitive: false
+oh_my_zsh_disable_auto_update: false
+oh_my_zsh_update_zsh_days: 13
+oh_my_zsh_disable_ls_colors: false
+oh_my_zsh_disable_auto_title: false
+oh_my_zsh_enable_correction: false
+oh_my_zsh_completion_waiting_dots: false
+oh_my_zsh_disable_untracked_files_dirty: false
+oh_my_zsh_hist_stamps: "mm/dd/yyyy"
+oh_my_zsh_zsh_custom: "$ZSH/custom"
+oh_my_zsh_plugins: []
