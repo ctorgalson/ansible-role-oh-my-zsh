@@ -29,7 +29,6 @@ following tasks:
 | `oh_my_zsh_zshrc_create` | `true` | Whether or not to create `.zshrc`. If `true`, will create `.zshrc` from a template. |
 | `oh_my_zsh_zshrc_template` | `templates/zshrc.zsh-template.j2` | The template used to create the user's `.zshrc` file when `oh_my_zsh_zshrc_create` is `true`. |
 | `oh_my_zsh_zshrc_backup` | `true` | Whether or not to create backup the existing `.zshrc` files when the role changes it. |
-| `oh_my_zsh_zshrc` | (see below) | List of variables used in `templates/zshrc.zsh-template.j2` or your custom template. |
 | `oh_my_zsh_zsh_theme` | `robbyrussell` | See `templates/zshrc.zsh-template`. |
 | `oh_my_zsh_case_sensitive` | `false` | See `templates/zshrc.zsh-template`. |
 | `oh_my_zsh_hyphen_insensitive` | `false` | See `templates/zshrc.zsh-template`. |
