@@ -21,4 +21,7 @@
         # Only create `.zshrc` for user 'lorem'; item.settings will be
         # appended to `.zshrc` for the user 'ipsum'.
         oh_my_zsh_zshrc_create: "{{ (item.name == 'lorem') | ternary(true, false) }}"
+        oh_my_zsh_plugins:
+          - "autojump"
+          - "git"
       with_items: "{{ users }}"
