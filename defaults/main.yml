@@ -18,6 +18,7 @@ omz_install_directory: ".oh-my-zsh"
 omz_zshrc_create: true
 omz_zshrc_template: "templates/zshrc.zsh-template.j2"
 omz_zshrc_backup: true
+omz_zshrc_force: true
 omz_zsh_theme: "robbyrussell"
 omz_case_sensitive: false
 omz_hyphen_insensitive: false
