@@ -3,10 +3,10 @@
 # not present.
 - name: Export vars to .zshrc if required.
   blockinfile:
-    dest: "{{ zsh_user_zshrc_path }}"
-    block: "{{ zsh_user.settings }}"
-    backup: "{{ oh_my_zsh_zshrc_backup }}"
+    dest: "{{ omz_user_zshrc_path }}"
+    block: "{{ omz_user.settings }}"
+    backup: "{{ omz_zshrc_backup }}"
   when:
-    - zsh_user.settings is defined
-    - zsh_user.settings != ''
-    - not oh_my_zsh_zshrc_create
+    - omz_user.settings is defined
+    - omz_user.settings != ''
+    - not omz_zshrc_create

@@ -13,7 +13,7 @@
     - install
     - installohmyzsh
 
-# Configure oh-my-zsh with a custom .zshrc template if oh_my_zsh_zshrc_create
+# Configure oh-my-zsh with a custom .zshrc template if omz_zshrc_create
 # is set to 'true'.
 - include_tasks: oh-my-zsh-zshrc.yml
   tags:

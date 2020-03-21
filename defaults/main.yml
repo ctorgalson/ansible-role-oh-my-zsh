@@ -1,9 +1,9 @@
 ---
 # Role vars.
-install_zsh: false
+omz_install_zsh: false
 
 # User vars.
-zsh_user: []
+omz_user: []
 #  - name: "someuser"
 #    group: "somegroup"
 #    settings: |
@@ -11,23 +11,23 @@ zsh_user: []
 #     alias l="ls -AF"
 
 # Oh My ZSH vars.
-oh_my_zsh_git_repository: "https://github.com/robbyrussell/oh-my-zsh.git"
-oh_my_zsh_install_directory: ".oh-my-zsh"
+omz_git_repository: "https://github.com/robbyrussell/oh-my-zsh.git"
+omz_install_directory: ".oh-my-zsh"
 
 # Oh My ZSH template vars.
-oh_my_zsh_zshrc_create: true
-oh_my_zsh_zshrc_template: "templates/zshrc.zsh-template.j2"
-oh_my_zsh_zshrc_backup: true
-oh_my_zsh_zsh_theme: "robbyrussell"
-oh_my_zsh_case_sensitive: false
-oh_my_zsh_hyphen_insensitive: false
-oh_my_zsh_disable_auto_update: false
-oh_my_zsh_update_zsh_days: 13
-oh_my_zsh_disable_ls_colors: false
-oh_my_zsh_disable_auto_title: false
-oh_my_zsh_enable_correction: false
-oh_my_zsh_completion_waiting_dots: false
-oh_my_zsh_disable_untracked_files_dirty: false
-oh_my_zsh_hist_stamps: "mm/dd/yyyy"
-oh_my_zsh_zsh_custom: "$ZSH/custom"
-oh_my_zsh_plugins: []
+omz_zshrc_create: true
+omz_zshrc_template: "templates/zshrc.zsh-template.j2"
+omz_zshrc_backup: true
+omz_zsh_theme: "robbyrussell"
+omz_case_sensitive: false
+omz_hyphen_insensitive: false
+omz_disable_auto_update: false
+omz_update_zsh_days: 13
+omz_disable_ls_colors: false
+omz_disable_auto_title: false
+omz_enable_correction: false
+omz_completion_waiting_dots: false
+omz_disable_untracked_files_dirty: false
+omz_hist_stamps: "mm/dd/yyyy"
+omz_zsh_custom: "$ZSH/custom"
+omz_plugins: []

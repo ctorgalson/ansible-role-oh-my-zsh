@@ -3,7 +3,7 @@
   hosts: all
   become: true
   vars:
-    install_zsh: true
+    omz_install_zsh: true
     users:
       - name: "lorem"
         group: "lorem"
@@ -17,11 +17,11 @@
       include_role:
         name: "ansible-role-oh-my-zsh"
       vars:
-        zsh_user: "{{ item }}"
+        omz_user: "{{ item }}"
         # Only create `.zshrc` for user 'lorem'; item.settings will be
         # appended to `.zshrc` for the user 'ipsum'.
-        oh_my_zsh_zshrc_create: "{{ (item.name == 'lorem') | ternary(true, false) }}"
-        oh_my_zsh_plugins:
+        omz_zshrc_create: "{{ (item.name == 'lorem') | ternary(true, false) }}"
+        omz_plugins:
           - "autojump"
           - "git"
       with_items: "{{ users }}"

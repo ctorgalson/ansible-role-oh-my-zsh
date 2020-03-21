@@ -1,7 +1,7 @@
 ---
 - name: Establish home directory.
   set_fact:
-    zsh_user_home_dir: "{{ (ansible_system == 'Darwin') | ternary('Users', 'home') }}"
+    omz_user_home_dir: "{{ (ansible_system == 'Darwin') | ternary('Users', 'home') }}"
 
 - name: Ensure zsh is installed.
   block:
@@ -24,5 +24,5 @@
 
 - name: Set user shell to zsh.
   user:
-    name: "{{ zsh_user.name }}"
+    name: "{{ omz_user.name }}"
     shell: "{{ zsh_installed_path.stdout }}"
