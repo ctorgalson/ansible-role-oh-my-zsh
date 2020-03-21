@@ -22,7 +22,7 @@
         - "omz_install_zsh"
 
 - name: Get zsh installed path.
-  command: "command -v zsh"
+  shell: "command -v zsh"
   register: omz_zsh_installed_path
   changed_when: false
 
