@@ -21,8 +21,8 @@
     - configure
     - configureohmyzsh
 
-# # Finally, add exports etc to .zshrc /last/ (i.e. so they get added to whaterver
-# # .zshrc exists.
+# Finally, add exports etc to .zshrc /last/ (i.e. so they get added to whaterver
+# .zshrc exists.
 - include_tasks: zsh-zshrc.yml
   tags:
     - zsh

@@ -10,4 +10,4 @@
     owner: "{{ omz_user.name }}"
     group: "{{ omz_user.group }}"
     backup: "{{ omz_zshrc_backup }}"
-  when: omz_zshrc_create
+  when: "omz_zshrc_create"

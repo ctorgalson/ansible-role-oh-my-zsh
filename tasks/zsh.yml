@@ -9,20 +9,24 @@
       package:
         name: "zsh"
         state: present
-      when: ansible_system == "Linux" and install_zsh
+      when:
+        - "ansible_system == 'Linux'"
+        - "omz_install_zsh"
 
     - name: Install zsh for macOS.
       homebrew:
         name: "zsh"
         state: present
-      when: ansible_system == "Darwin" and install_zsh
+      when:
+        - "ansible_system == 'Darwin'"
+        - "omz_install_zsh"
 
 - name: Get zsh installed path.
-  command: "which zsh"
-  register: zsh_installed_path
+  command: "command -v zsh"
+  register: omz_zsh_installed_path
   changed_when: false
 
 - name: Set user shell to zsh.
   user:
     name: "{{ omz_user.name }}"
-    shell: "{{ zsh_installed_path.stdout }}"
+    shell: "{{ omz_zsh_installed_path.stdout }}"

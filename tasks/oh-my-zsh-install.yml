@@ -10,7 +10,7 @@
     update: true
     accept_hostkey: true
     version: "master"
-  register: omz_clone
+  register: "omz_clone"
 
 - name: Set ownership on newly cloned repository.
   file:
@@ -18,4 +18,4 @@
     owner: "{{ omz_user.name }}"
     group: "{{ omz_user.group }}"
     recurse: true
-  when: omz_clone is changed
+  when: "omz_clone is changed"
