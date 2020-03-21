@@ -1,6 +1,6 @@
 # Ansible Role Oh My ZSH
 
-![Build status](https://travis-ci.com/ctorgalson/ansible-role-oh-my-zsh.svg?branch=master)
+![](https://github.com/ctorgalson/ansible-role-oh-my-zsh/workflows/Molecule%20Test/badge.svg)
 
 This is a basic Ansible role to enable and configure Oh My Zsh on Ubuntu or
 MacOS. It should also work on many other \*nix variants. It performs the
@@ -19,29 +19,29 @@ following tasks:
 
 | Variable name  | Default value | Description |
 |----------------|---------------|-------------|
-| `install_zsh` | `false` | Defines whether or not the role should attempt to install Zsh. |
-| `zsh_user` | `[]` | The user to install/configure (Oh My) Zsh for. See below for its properties. |
-| `zsh_user.name` | `-` | The name of the user. |
-| `zsh_user.group` | `-` | The group of the user |
-| `zsh_user.settings` | `-` | Extra settings (as a mult-line string) such as variable exports or aliases to add to the user's `.zshrc` file. Only used if `oh_my_zsh_zshrc_create` is `true`. |
-| `oh_my_zsh_git_repository` | `https://github.com/robbyrussell/oh-my-zsh.git` | The git repo to clone Oh My Zsh from. |
-| `oh_my_zsh_install_directory` | `.oh-my-zsh` | The name of the directory to clone Oh My Zsh into. |
-| `oh_my_zsh_zshrc_create` | `true` | Whether or not to create `.zshrc`. If `true`, will create `.zshrc` from a template. |
-| `oh_my_zsh_zshrc_template` | `templates/zshrc.zsh-template.j2` | The template used to create the user's `.zshrc` file when `oh_my_zsh_zshrc_create` is `true`. |
-| `oh_my_zsh_zshrc_backup` | `true` | Whether or not to create backup the existing `.zshrc` files when the role changes it. |
-| `oh_my_zsh_zsh_theme` | `robbyrussell` | See `templates/zshrc.zsh-template`. |
-| `oh_my_zsh_case_sensitive` | `false` | See `templates/zshrc.zsh-template`. |
-| `oh_my_zsh_hyphen_insensitive` | `false` | See `templates/zshrc.zsh-template`. |
-| `oh_my_zsh_disable_auto_update` | `false` | See `templates/zshrc.zsh-template`. |
-| `oh_my_zsh_update_zsh_days` | `13` | See `templates/zshrc.zsh-template`. |
-| `oh_my_zsh_disable_ls_colors` | `false` | See `templates/zshrc.zsh-template`. |
-| `oh_my_zsh_disable_auto_title` | `false` | See `templates/zshrc.zsh-template`. |
-| `oh_my_zsh_enable_correction` | `false` | See `templates/zshrc.zsh-template`. |
-| `oh_my_zsh_completion_waiting_dots` | `false` | See `templates/zshrc.zsh-template`. |
-| `oh_my_zsh_disable_untracked_files_dirty` | `false` | See `templates/zshrc.zsh-template`. |
-| `oh_my_zsh_hist_stamps` | `mm/dd/yyyy` | See `templates/zshrc.zsh-template`. |
-| `oh_my_zsh_zsh_custom` | `$ZSH/custom` | See `templates/zshrc.zsh-template`. |
-| `oh_my_zsh_plugins` | `[]` | A list of Oh My Zsh plugins to enable. |
+| `omz_install_zsh` | `false` | Defines whether or not the role should attempt to install Zsh. |
+| `omz_user` | `[]` | The user to install/configure (Oh My) Zsh for. See below for its properties. |
+| `omz_user.name` | `-` | The name of the user. |
+| `omz_user.group` | `-` | The group of the user |
+| `omz_user.settings` | `-` | Extra settings (as a mult-line string) such as variable exports or aliases to add to the user's `.zshrc` file. Only used if `omz_zshrc_create` is `true`. |
+| `omz_git_repository` | `https://github.com/robbyrussell/oh-my-zsh.git` | The git repo to clone Oh My Zsh from. |
+| `omz_install_directory` | `.oh-my-zsh` | The name of the directory to clone Oh My Zsh into. |
+| `omz_zshrc_create` | `true` | Whether or not to create `.zshrc`. If `true`, will create `.zshrc` from a template. |
+| `omz_zshrc_template` | `templates/zshrc.zsh-template.j2` | The template used to create the user's `.zshrc` file when `omz_zshrc_create` is `true`. |
+| `omz_zshrc_backup` | `true` | Whether or not to create backup the existing `.zshrc` files when the role changes it. |
+| `omz_zsh_theme` | `robbyrussell` | See `templates/zshrc.zsh-template`. |
+| `omz_case_sensitive` | `false` | See `templates/zshrc.zsh-template`. |
+| `omz_hyphen_insensitive` | `false` | See `templates/zshrc.zsh-template`. |
+| `omz_disable_auto_update` | `false` | See `templates/zshrc.zsh-template`. |
+| `omz_update_zsh_days` | `13` | See `templates/zshrc.zsh-template`. |
+| `omz_disable_ls_colors` | `false` | See `templates/zshrc.zsh-template`. |
+| `omz_disable_auto_title` | `false` | See `templates/zshrc.zsh-template`. |
+| `omz_enable_correction` | `false` | See `templates/zshrc.zsh-template`. |
+| `omz_completion_waiting_dots` | `false` | See `templates/zshrc.zsh-template`. |
+| `omz_disable_untracked_files_dirty` | `false` | See `templates/zshrc.zsh-template`. |
+| `omz_hist_stamps` | `mm/dd/yyyy` | See `templates/zshrc.zsh-template`. |
+| `omz_zsh_custom` | `$ZSH/custom` | See `templates/zshrc.zsh-template`. |
+| `omz_plugins` | `[]` | A list of Oh My Zsh plugins to enable. |
 
 ## Role task files
 
@@ -55,7 +55,7 @@ This task installs and sets zsh as the default shell for a user.
 
 #### Variables used
 
-- `zsh_user`
+- `omz_user`
 
 ### `oh-my-zsh-install.yml`: Oh My Zsh installation
 
@@ -64,10 +64,10 @@ specified user and sets the appropriate permissions on the directory.
 
 #### Variables used
 
-- `zsh_user`
-- `oh_my_zsh_install_directory`
-- `oh_my_zsh_git_repository`
-- `oh_my_zsh_install_path`
+- `omz_user`
+- `omz_install_directory`
+- `omz_git_repository`
+- `omz_install_path`
 
 ### `oh-my-zsh-zshrc.yml`: Oh My Zsh configuration
 
@@ -75,13 +75,13 @@ This task creates the user a `.zshrc` file containing global values for various
 Oh My Zsh options based on [the `.zshrc` template in the oh-my-zsh repository](https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/templates/zshrc.zsh-template).
 The task can be configured to back up any existing `.zshrc` file.
 
-This task only runs when `oh_my_zsh_zshrc_create` is set to `true`.
+This task only runs when `omz_zshrc_create` is set to `true`.
 
 #### Variables used
 
-- `zsh_user`
-- `oh_my_zsh_zshrc_template`
-- `oh_my_zsh_zshrc_backup`
+- `omz_user`
+- `omz_zshrc_template`
+- `omz_zshrc_backup`
 
 ### `zsh-zshrc.yml`: final Zsh configuration
 
@@ -89,12 +89,12 @@ This task adds individual lines to the `.zshrc` file. This is useful for adding
 Zsh settings on an already-existing `.zshrc` file without creating it
 from scratch.
 
-This task only runs when `oh_my_zsh_zshrc_create` is set to `false`.
+This task only runs when `omz_zshrc_create` is set to `false`.
 
 #### Variables used
 
-- `zsh_user`
-- `oh_my_zsh_zshrc_backup`
+- `omz_user`
+- `omz_zshrc_backup`
 
 ## Sample playbook
 
@@ -104,7 +104,7 @@ This task only runs when `oh_my_zsh_zshrc_create` is set to `false`.
       become: true
 
       vars:
-        install_zsh: true
+        omz_install_zsh: true
         users:
           - name: "lorem"
             group: "lorem"
@@ -119,11 +119,11 @@ This task only runs when `oh_my_zsh_zshrc_create` is set to `false`.
           include_role:
             name: "ansible-role-oh-my-zsh"
           vars:
-            zsh_user: "{{ item }}"
+            omz_user: "{{ item }}"
             # Only create `.zshrc` for user 'lorem'; item.settings will be
             # appended to `.zshrc` for the user 'ipsum'.
-            oh_my_zsh_zshrc_create: "{{ (item.name == 'lorem') | ternary(true, false) }}"
-            oh_my_zsh_plugins:
+            omz_zshrc_create: "{{ (item.name == 'lorem') | ternary(true, false) }}"
+            omz_plugins:
               - "autojump"
               - "git"
           with_items: "{{ users }}"

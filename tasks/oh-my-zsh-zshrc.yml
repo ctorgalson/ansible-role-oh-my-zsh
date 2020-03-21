@@ -1,13 +1,13 @@
 ---
 - name: Derive user .zshrc path.
   set_fact:
-    zsh_user_zshrc_path: "/{{ zsh_user_home_dir }}/{{ zsh_user.name }}/.zshrc"
+    omz_user_zshrc_path: "/{{ omz_user_home_dir }}/{{ omz_user.name }}/.zshrc"
 
 - name: Template .zshrc into place if required.
   template:
-    src: "{{ oh_my_zsh_zshrc_template }}"
-    dest: "{{ zsh_user_zshrc_path }}"
-    owner: "{{ zsh_user.name }}"
-    group: "{{ zsh_user.group }}"
-    backup: "{{ oh_my_zsh_zshrc_backup }}"
-  when: oh_my_zsh_zshrc_create
+    src: "{{ omz_zshrc_template }}"
+    dest: "{{ omz_user_zshrc_path }}"
+    owner: "{{ omz_user.name }}"
+    group: "{{ omz_user.group }}"
+    backup: "{{ omz_zshrc_backup }}"
+  when: "omz_zshrc_create"

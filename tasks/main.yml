@@ -13,7 +13,7 @@
     - install
     - installohmyzsh
 
-# Configure oh-my-zsh with a custom .zshrc template if oh_my_zsh_zshrc_create
+# Configure oh-my-zsh with a custom .zshrc template if omz_zshrc_create
 # is set to 'true'.
 - include_tasks: oh-my-zsh-zshrc.yml
   tags:
@@ -21,8 +21,8 @@
     - configure
     - configureohmyzsh
 
-# # Finally, add exports etc to .zshrc /last/ (i.e. so they get added to whaterver
-# # .zshrc exists.
+# Finally, add exports etc to .zshrc /last/ (i.e. so they get added to whaterver
+# .zshrc exists.
 - include_tasks: zsh-zshrc.yml
   tags:
     - zsh
