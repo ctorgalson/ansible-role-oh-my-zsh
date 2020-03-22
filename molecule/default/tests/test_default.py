@@ -48,10 +48,11 @@ def test_zshrc_create(host, name):
     assert "plugins=(autojump git)" in f.content_string
 
 
-@pytest.mark.parametrize("name", [
-    "ipsum",
+@pytest.mark.parametrize("user,setting", [
+    ("lorem", "PLATFORMSH_CLI_TOKEN=10987654321"),
+    ("ipsum", "ls -AF"),
 ])
-def test_zshrc_alter(host, name):
-    f = host.file("/home/{0}/.zshrc".format(name))
+def test_zshrc_settings(host, user, setting):
+    f = host.file("/home/{0}/.zshrc".format(user))
 
-    assert "ls -AF" in f.content_string
+    assert setting in f.content_string
