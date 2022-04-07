@@ -11,7 +11,7 @@ omz_user: []
 #     alias l="ls -AF"
 
 # Oh My ZSH vars.
-omz_git_repository: "https://github.com/robbyrussell/oh-my-zsh.git"
+omz_git_repository: "https://github.com/ohmyzsh/ohmyzsh.git"
 omz_install_directory: ".oh-my-zsh"
 
 # Oh My ZSH template vars.
