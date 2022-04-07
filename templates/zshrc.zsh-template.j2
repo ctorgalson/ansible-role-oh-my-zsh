@@ -1,28 +1,40 @@
-# Managed by Ansible. This file may be overwritten when playbooks are run!
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=/{{ omz_user_home_dir }}/{{ omz_user.name }}/{{ omz_install_directory }}
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="{{ omz_zsh_theme }}"
+
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+ZSH_THEME_RANDOM_CANDIDATES=({{ omz_zsh_theme_random_candidates | join(" ") }})
 
 # Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="{{ omz_case_sensitive }}"
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
 HYPHEN_INSENSITIVE="{{ omz_hyphen_insensitive }}"
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-DISABLE_AUTO_UPDATE="{{ omz_disable_auto_update }}"
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+
+zstyle ':omz:update' mode {{ omz_update_mode }}
 
 # Uncomment the following line to change how often to auto-update (in days).
-export UPDATE_ZSH_DAYS={{ omz_update_zsh_days }}
+zstyle ':omz:update' frequency {{ omz_update_zsh_days }}
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+DISABLE_MAGIC_FUNCTIONS="{{ omz_disable_magic_functions }}"
 
 # Uncomment the following line to disable colors in ls.
 DISABLE_LS_COLORS="{{ omz_disable_ls_colors }}"
@@ -34,6 +46,9 @@ DISABLE_AUTO_TITLE="{{ omz_disable_auto_title }}"
 ENABLE_CORRECTION="{{ omz_enable_correction }}"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
 COMPLETION_WAITING_DOTS="{{ omz_completion_waiting_dots }}"
 
 # Uncomment the following line if you want to disable marking untracked files
@@ -43,14 +58,18 @@ DISABLE_UNTRACKED_FILES_DIRTY="{{ omz_disable_untracked_files_dirty }}"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
 HIST_STAMPS="{{ omz_hist_stamps }}"
 
 # Would you like to use another custom folder than $ZSH/custom?
 ZSH_CUSTOM={{ omz_zsh_custom }}
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=({{ omz_plugins | join(" ") }})
@@ -73,9 +92,6 @@ source $ZSH/oh-my-zsh.sh
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
