@@ -11,7 +11,7 @@ omz_user: []
 #     alias l="ls -AF"
 
 # Oh My ZSH vars.
-omz_git_repository: "https://github.com/robbyrussell/oh-my-zsh.git"
+omz_git_repository: "https://github.com/ohmyzsh/ohmyzsh.git"
 omz_install_directory: ".oh-my-zsh"
 
 # Oh My ZSH template vars.
@@ -20,10 +20,12 @@ omz_zshrc_template: "templates/zshrc.zsh-template.j2"
 omz_zshrc_backup: true
 omz_zshrc_force: true
 omz_zsh_theme: "robbyrussell"
+omz_zsh_theme_random_candidates: []
 omz_case_sensitive: false
 omz_hyphen_insensitive: false
-omz_disable_auto_update: false
+omz_update_mode: "prompt" # These are the available modes: disabled, auto, reminder, prompt
 omz_update_zsh_days: 13
+omz_disable_magic_functions: false
 omz_disable_ls_colors: false
 omz_disable_auto_title: false
 omz_enable_correction: false
@@ -31,4 +33,5 @@ omz_completion_waiting_dots: false
 omz_disable_untracked_files_dirty: false
 omz_hist_stamps: "mm/dd/yyyy"
 omz_zsh_custom: "$ZSH/custom"
-omz_plugins: []
+omz_plugins:
+  - "git"
