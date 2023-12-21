@@ -10,15 +10,15 @@
         - "configurezsh"
 
 # Install oh-my-zsh.
-#- name: "OMZ | include tasks from oh-my-zsh-install.yml."
-#  ansible.builtin.include_tasks:
-#    file: "oh-my-zsh-install.yml"
-#    apply:
-#      tags:
-#        - "oh-my-zsh"
-#        - "install"
-#        - "installohmyzsh"
-#
+- name: "OMZ | include tasks from oh-my-zsh-install.yml."
+  ansible.builtin.include_tasks:
+    file: "oh-my-zsh-install.yml"
+    apply:
+      tags:
+        - "oh-my-zsh"
+        - "install"
+        - "installohmyzsh"
+
 ## Configure oh-my-zsh with a custom .zshrc template if omz_zshrc_create
 ## is set to 'true'.
 #- name: "OMZ | include tasks from oh-my-zsh-zshrc.yml."

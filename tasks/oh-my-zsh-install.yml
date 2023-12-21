@@ -1,10 +1,10 @@
 ---
-- name: Establish install location.
-  set_fact:
+- name: "OMZ | establish install location."
+  ansible.builtin.set_fact:
     omz_install_path: "/{{ omz_user_home_dir }}/{{ omz_user.name }}/{{ omz_install_directory }}"
 
-- name: Clone Oh My ZSH repo for user.
-  git:
+- name: "OMZ | clone Oh My ZSH repo for user."
+  ansible.builtin.git:
     repo: "{{ omz_git_repository }}"
     dest: "{{ omz_install_path }}"
     update: true
