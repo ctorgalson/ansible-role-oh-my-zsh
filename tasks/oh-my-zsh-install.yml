@@ -10,12 +10,6 @@
     update: true
     accept_hostkey: true
     version: "master"
+  become: true
+  become_user: "{{ omz_user.name }}"
   register: "omz_clone"
-
-- name: Set ownership on newly cloned repository.
-  file:
-    path: "{{ omz_install_path }}"
-    owner: "{{ omz_user.name }}"
-    group: "{{ omz_user.group }}"
-    recurse: true
-  when: "omz_clone is changed"
