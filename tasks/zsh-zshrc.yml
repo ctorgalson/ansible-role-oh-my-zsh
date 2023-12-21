@@ -1,8 +1,8 @@
 ---
 # Note that we assume this file exists! lineinfile will fail if the file is
 # not present.
-- name: Export vars to .zshrc if required.
-  blockinfile:
+- name: "OMZ | export vars to .zshrc if required."
+  ansible.builtin.blockinfile:
     dest: "{{ omz_user_zshrc_path }}"
     block: "{{ omz_user.settings }}"
     backup: "{{ omz_zshrc_backup }}"
