@@ -2,7 +2,7 @@
 - name: "OMZ | template .zshrc into place if required."
   template:
     src: "{{ omz_zshrc_template }}"
-    dest: "/{{ omz_user_home_dir }}/{{ omz_user.name }}/.zshrc"
+    dest: "{{ omz_user_zshrc_path }}"
     owner: "{{ omz_user.name }}"
     group: "{{ omz_user.group }}"
     backup: "{{ omz_zshrc_backup }}"
