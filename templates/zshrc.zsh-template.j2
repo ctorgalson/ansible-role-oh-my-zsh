@@ -86,4 +86,8 @@ plugins=({{ omz_plugins | join(" ") }})
 
 {{ omz_user.settings }}
 
+# Source oh-my-zsh.sh last to make sure the whole .zshrc file is properly
+# sourced.
+#
+# @see https://stackoverflow.com/questions/15682456/oh-my-zsh-config-file-not-loading/15882090
 source $ZSH/oh-my-zsh.sh
