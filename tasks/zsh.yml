@@ -1,8 +1,4 @@
 ---
-- name: "OMZ | establish home directory."
-  ansible.builtin.set_fact:
-    omz_user_home_dir: "{{ (ansible_system == 'Darwin') | ternary('Users', 'home') }}"
-
 - name: "OMZ | ensure zsh is installed."
   block:
     - name: "OMZ | install zsh for Linux using 'package' module."

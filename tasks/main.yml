@@ -1,4 +1,15 @@
 ---
+# We need this, whatever's going on.
+- name: "OMZ | establish home directory."
+  ansible.builtin.set_fact:
+    omz_user_home_dir: "/{{ (ansible_system == 'Darwin') | ternary('Users', 'home') }}/{{ omz_user.name }}"
+
+# Every set of options needs at least one, possibly both of these.
+- name: "OMZ | derive user .zshrc path."
+  ansible.builtin.set_fact:
+    omz_user_zshrc_path: "/{{ omz_user_home_dir }}/.zshrc"
+    omz_install_path: "/{{ omz_user_home_dir }}/{{ omz_install_directory }}"
+
 # Make sure zsh is installed and set to the user's default shell.
 - name: "OMZ | include tasks from zsh.yml."
   ansible.builtin.include_tasks:
@@ -28,6 +39,7 @@
         - "oh-my-zsh"
         - "configure"
         - "configureohmyzsh"
+  when: "omz_zshrc_create"
 
 # Add exports etc to the end of .zshrc (so they override existing settings).
 - name: "OMZ | include tasks from zsh-zshrc.yml."
@@ -38,3 +50,9 @@
         - "zsh"
         - "configure"
         - "configurezsh"
+  when:
+    - "omz_user.settings is defined"
+    # Don't flag this line for checking if the value is empty--checking for an
+    # empty value makes perfect sense.
+    - "omz_user.settings != ''"  # noqa 602
+    - "not omz_zshrc_create"

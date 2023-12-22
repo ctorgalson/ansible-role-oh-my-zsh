@@ -6,9 +6,3 @@
     dest: "{{ omz_user_zshrc_path }}"
     block: "{{ omz_user.settings }}"
     backup: "{{ omz_zshrc_backup }}"
-  when:
-    - "omz_user.settings is defined"
-    # Don't flag this line for checking if the value is empty--checking for an
-    # empty value makes perfect sense.
-    - "omz_user.settings != ''"  # noqa 602
-    - "not omz_zshrc_create"
