@@ -55,8 +55,6 @@ ZSH_CUSTOM={{ omz_zsh_custom }}
 # Add wisely, as too many plugins slow down shell startup.
 plugins=({{ omz_plugins | join(" ") }})
 
-source $ZSH/oh-my-zsh.sh
-
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -87,3 +85,5 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 {{ omz_user.settings }}
+
+source $ZSH/oh-my-zsh.sh
