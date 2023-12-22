@@ -7,8 +7,8 @@
 # Every set of options needs at least one, possibly both of these.
 - name: "OMZ | derive user .zshrc path."
   ansible.builtin.set_fact:
-    omz_user_zshrc_path: "/{{ omz_user_home_dir }}/.zshrc"
-    omz_install_path: "/{{ omz_user_home_dir }}/{{ omz_install_directory }}"
+    omz_user_zshrc_path: "{{ omz_user_home_dir }}/.zshrc"
+    omz_install_path: "{{ omz_user_home_dir }}/{{ omz_install_directory }}"
 
 # Make sure zsh is installed and set to the user's default shell.
 - name: "OMZ | include tasks from zsh.yml."
