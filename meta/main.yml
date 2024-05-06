@@ -1,24 +1,25 @@
 ---
 galaxy_info:
-  author: ctorgalson
-  description: Installs and configures oh-my-zsh for one or more users on macOS or Ubuntu.
+  author: "ctorgalson"
+  description: "Installs and configures oh-my-zsh for one or more users on macOS or Ubuntu."
 
-  license: MIT
+  license: "MIT"
 
-  min_ansible_version: 1.9
+  min_ansible_version: "2.0"
 
   platforms:
-    - name: MacOSX
+    - name: "MacOSX"
       versions:
-        - 10.12
-        - 10.13
-    - name: Ubuntu
+        - "all"
+    - name: "Ubuntu"
       versions:
-        - xenial
-        - bionic
+        - "all"
+    - name: "Fedora"
+      versions:
+        - "all"
 
   galaxy_tags:
-    - zsh
-    - ohmyzsh
+    - "zsh"
+    - "ohmyzsh"
 
 dependencies: []
