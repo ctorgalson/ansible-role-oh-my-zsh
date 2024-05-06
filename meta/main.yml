@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: "ctorgalson"
-  description: "Installs and configures oh-my-zsh for one or more users on macOS or Ubuntu."
+  description: "Installs and configures oh-my-zsh for one or more users on Fedora, macOS, or Ubuntu."
 
   license: "MIT"
 
