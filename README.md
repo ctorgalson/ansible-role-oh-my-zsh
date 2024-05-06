@@ -2,9 +2,9 @@
 
 ![](https://github.com/ctorgalson/ansible-role-oh-my-zsh/workflows/Molecule%20Test/badge.svg)
 
-This is a basic Ansible role to enable and configure Oh My Zsh on Ubuntu or
-MacOS. It should also work on many other \*nix variants. It performs the
-following tasks:
+This is a basic Ansible role to enable and configure Oh My Zsh on Fedora,
+Ubuntu, or MacOS. It should also work on many other \*nix variants. It
+performs the following tasks:
 
 - Install and minimally configure Zsh:
   - make sure it exists,

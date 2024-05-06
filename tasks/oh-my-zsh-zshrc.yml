@@ -1,9 +1,9 @@
 ---
-- name: Derive user .zshrc path.
+- name: "OMZ | derive user .zshrc path."
   set_fact:
     omz_user_zshrc_path: "/{{ omz_user_home_dir }}/{{ omz_user.name }}/.zshrc"
 
-- name: Template .zshrc into place if required.
+- name: "OMZ | template .zshrc into place if required."
   template:
     src: "{{ omz_zshrc_template }}"
     dest: "{{ omz_user_zshrc_path }}"

@@ -1,21 +1,21 @@
 ---
-- name: Establish install location.
+- name: "OMZ | establish install location."
   set_fact:
     omz_install_path: "/{{ omz_user_home_dir }}/{{ omz_user.name }}/{{ omz_install_directory }}"
 
-- name: Clone Oh My ZSH repo for user.
+- name: "OMZ | clone Oh My ZSH repo for user."
   git:
     repo: "{{ omz_git_repository }}"
     dest: "{{ omz_install_path }}"
-    update: true
-    accept_hostkey: true
+    update: "true"
+    accept_hostkey: "true"
     version: "master"
   register: "omz_clone"
 
-- name: Set ownership on newly cloned repository.
+- name: "OMZ | set ownership on newly cloned repository."
   file:
     path: "{{ omz_install_path }}"
     owner: "{{ omz_user.name }}"
     group: "{{ omz_user.group }}"
-    recurse: true
+    recurse: "true"
   when: "omz_clone is changed"

@@ -1,7 +1,7 @@
 ---
 # Note that we assume this file exists! lineinfile will fail if the file is
 # not present.
-- name: Export vars to .zshrc if required.
+- name: "OMZ | export vars to .zshrc if required."
   blockinfile:
     dest: "{{ omz_user_zshrc_path }}"
     block: "{{ omz_user.settings }}"
