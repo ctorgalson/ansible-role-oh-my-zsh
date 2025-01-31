@@ -12,34 +12,34 @@ export ZSH=/{{ omz_user_home_dir }}/{{ omz_user.name }}/{{ omz_install_directory
 ZSH_THEME="{{ omz_zsh_theme }}"
 
 # Uncomment the following line to use case-sensitive completion.
-CASE_SENSITIVE="{{ omz_case_sensitive }}"
+CASE_SENSITIVE="{{ omz_case_sensitive | lower }}"
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
-HYPHEN_INSENSITIVE="{{ omz_hyphen_insensitive }}"
+HYPHEN_INSENSITIVE="{{ omz_hyphen_insensitive | lower }}"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-DISABLE_AUTO_UPDATE="{{ omz_disable_auto_update }}"
+DISABLE_AUTO_UPDATE="{{ omz_disable_auto_update | lower }}"
 
 # Uncomment the following line to change how often to auto-update (in days).
 export UPDATE_ZSH_DAYS={{ omz_update_zsh_days }}
 
 # Uncomment the following line to disable colors in ls.
-DISABLE_LS_COLORS="{{ omz_disable_ls_colors }}"
+DISABLE_LS_COLORS="{{ omz_disable_ls_colors | lower }}"
 
 # Uncomment the following line to disable auto-setting terminal title.
-DISABLE_AUTO_TITLE="{{ omz_disable_auto_title }}"
+DISABLE_AUTO_TITLE="{{ omz_disable_auto_title | lower }}"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="{{ omz_enable_correction }}"
+ENABLE_CORRECTION="{{ omz_enable_correction | lower }}"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="{{ omz_completion_waiting_dots }}"
+COMPLETION_WAITING_DOTS="{{ omz_completion_waiting_dots | lower if omz_completion_waiting_dots is boolean else omz_completion_waiting_dots }}"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-DISABLE_UNTRACKED_FILES_DIRTY="{{ omz_disable_untracked_files_dirty }}"
+DISABLE_UNTRACKED_FILES_DIRTY="{{ omz_disable_untracked_files_dirty | lower }}"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
