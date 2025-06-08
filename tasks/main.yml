@@ -1,7 +1,7 @@
 ---
 # Make sure zsh is installed and set to the user's default shell.
 - name: "OMZ | include zsh.yml tasks."
-  include_tasks: "zsh.yml"
+  ansible.builtin.include_tasks: "zsh.yml"
   tags:
     - "zsh"
     - "configure"
@@ -9,7 +9,7 @@
 
 # Install oh-my-zsh.
 - name: "OMZ | include oh-my-zsh.yml tasks."
-  include_tasks: oh-my-zsh-install.yml
+  ansible.builtin.include_tasks: oh-my-zsh-install.yml
   tags:
     - "oh-my-zsh"
     - "install"
@@ -18,7 +18,7 @@
 # Configure oh-my-zsh with a custom .zshrc template if omz_zshrc_create
 # is set to 'true'.
 - name: "OMZ | include oh-my-zsh-zshrc.yml tasks."
-  include_tasks: oh-my-zsh-zshrc.yml
+  ansible.builtin.include_tasks: oh-my-zsh-zshrc.yml
   tags:
     - "oh-my-zsh"
     - "configure"
@@ -27,7 +27,7 @@
 # Finally, add exports etc to .zshrc /last/ (i.e. so they get added to whaterver
 # .zshrc exists.
 - name: "OMZ | include zsh-zshrc.yml tasks."
-  include_tasks: zsh-zshrc.yml
+  ansible.builtin.include_tasks: zsh-zshrc.yml
   tags:
     - "zsh"
     - "configure"

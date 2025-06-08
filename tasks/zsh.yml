@@ -1,12 +1,12 @@
 ---
 - name: "OMZ | establish home directory."
-  set_fact:
+  ansible.builtin.set_fact:
     omz_user_home_dir: "{{ (ansible_system == 'Darwin') | ternary('Users', 'home') }}"
 
 - name: "OMZ | ensure zsh is installed."
   block:
     - name: "OMZ | install zsh for Linux."
-      package:
+      ansible.builtin.package:
         name: "zsh"
         state: "present"
       when:
@@ -14,19 +14,19 @@
         - "omz_install_zsh"
 
     - name: "OMZ | install zsh for macOS."
-      homebrew:
+      community.general.homebrew:
         name: "zsh"
         state: "present"
       when:
         - "ansible_system == 'Darwin'"
         - "omz_install_zsh"
 
-- name: "OMZ | get zsh installed path."
-  shell: "command -v zsh"
+- name: "OMZ | get zsh installed path." # noqa: command-instead-of-shell
+  ansible.builtin.shell: "command -v zsh"
   register: omz_zsh_installed_path
   changed_when: "false"
 
 - name: "OMZ | get user shell to zsh."
-  user:
+  ansible.builtin.user:
     name: "{{ omz_user.name }}"
     shell: "{{ omz_zsh_installed_path.stdout }}"

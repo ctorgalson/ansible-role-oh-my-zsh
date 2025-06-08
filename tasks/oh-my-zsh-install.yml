@@ -1,10 +1,10 @@
 ---
 - name: "OMZ | establish install location."
-  set_fact:
+  ansible.builtin.set_fact:
     omz_install_path: "/{{ omz_user_home_dir }}/{{ omz_user.name }}/{{ omz_install_directory }}"
 
 - name: "OMZ | clone Oh My ZSH repo for user."
-  git:
+  ansible.builtin.git:
     repo: "{{ omz_git_repository }}"
     dest: "{{ omz_install_path }}"
     update: "true"
@@ -12,8 +12,8 @@
     version: "master"
   register: "omz_clone"
 
-- name: "OMZ | set ownership on newly cloned repository."
-  file:
+- name: "OMZ | set ownership on newly cloned repository." # noqa: no-handler
+  ansible.builtin.file:
     path: "{{ omz_install_path }}"
     owner: "{{ omz_user.name }}"
     group: "{{ omz_user.group }}"
