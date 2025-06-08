@@ -1,8 +1,8 @@
 ---
 # Note that we assume this file exists! lineinfile will fail if the file is
 # not present.
-- name: "OMZ | export vars to .zshrc if required."
-  blockinfile:
+- name: "OMZ | export vars to .zshrc if required." # noqa: empty-string-compare
+  ansible.builtin.blockinfile:
     dest: "{{ omz_user_zshrc_path }}"
     block: "{{ omz_user.settings }}"
     backup: "{{ omz_zshrc_backup }}"
@@ -10,5 +10,5 @@
     - "omz_user.settings is defined"
     # Don't flag this line for checking if the value is empty--checking for an
     # empty value makes perfect sense.
-    - "omz_user.settings != ''"  # noqa 602
+    - "omz_user.settings != ''"
     - "not omz_zshrc_create"
